@@ -10,7 +10,7 @@ class Profile(models.Model):
     join_date = models.DateField(auto_now_add=True)
     past_cities = models.TextField(blank=True)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

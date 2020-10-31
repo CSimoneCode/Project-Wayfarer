@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 
 # --------------------------- STATIC PAGES
@@ -13,6 +14,7 @@ def about(request):
 
 
 # --------------------------- PROFILE 
+@login_required
 def profile(request):
 
     return render(request, 'profile.html')
@@ -31,3 +33,9 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+# --------------------------- POSTS
+@login_required
+def posts_index(request):
+    pass
