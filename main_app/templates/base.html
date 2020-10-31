@@ -12,16 +12,17 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;CatCollector</a></li>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Traveler</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">My Page</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </div>
@@ -32,7 +33,7 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2019 Cat Collector &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2020 Traveler &nbsp;</div>
   </footer>
 </body>
 </html>
