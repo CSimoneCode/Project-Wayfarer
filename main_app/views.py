@@ -44,8 +44,13 @@ def update_profile(request):
         return render(request, 'profiles/edit.html', context)
 
 
+# --------------------------- POSTS
+@login_required
+def posts_index(request):
+    pass
 
 
+# --------------------------- Auth
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -61,8 +66,3 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-
-# --------------------------- POSTS
-@login_required
-def posts_index(request):
-    pass
