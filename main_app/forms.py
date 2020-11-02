@@ -9,4 +9,3 @@ class ProfileForm(forms.ModelForm):
             'current_city',
             'past_cities'
         ]
-

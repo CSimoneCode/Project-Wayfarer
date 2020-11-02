@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .forms import ProfileForm
@@ -18,28 +19,30 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    profile = Profile.objects.filter(user=request.user)
+    profile = Profile.objects.filter(user=request.user)[0]
+    user = User.objects.filter(id=request.user.id)
     context = {
-        'profile': profile
+        'profile': profile,
+        'user': user
     }
-
     return render(request, 'profiles/index.html', context)
 
 
-def add_profile(request):
+@login_required
+def update_profile(request):
+    error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
-            new_profile = profile_form.save(commit=False)
-            new_profile.user = request.user
-            new_profile.save()
+            profile_form.save()
             return redirect('profile')
+        else:
+            error_message = 'Something went wrong - try again'
     else:
-        profile_form = ProfileForm()
-        context = {
-            'profile_form': profile_form
-        }
-        return render(request, 'profiles/new.html', context)
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {'profile_form': profile_form, 'error_message': error_message}
+        return render(request, 'profiles/edit.html', context)
+
 
 def signup(request):
     error_message = ''
@@ -54,6 +57,7 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
 
 
 # --------------------------- POSTS
