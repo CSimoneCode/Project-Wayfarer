@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Profile, Posts
-# from .forms import PostsForm 
+from .forms import PostsForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -21,8 +21,8 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-
     user = User.objects.filter(id=request.user.id)
+    posts = Posts.objects.filter(author=request.user.id)
     if len(Profile.objects.filter(user=request.user)) == 0:
         context = {
             'user': user
@@ -31,7 +31,8 @@ def profile(request):
         profile = Profile.objects.filter(user=request.user)[0]    
         context = {
             'profile': profile,
-            'user': user
+            'user': user,
+            'posts': posts
         }
     return render(request, 'profiles/index.html', context)
 
@@ -58,23 +59,19 @@ def add_profile(request):
 def update_profile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
-        # profile_form = ProfileForm(request.POST, instance=request.user.profile) ######################CHECK Here
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             updated_profile = profile_form.save()
             return redirect('profile')
         else:
             error_message = 'Something went wrong - try again'
     else:
-        # if len(Profile.objects.filter(user=request.user)) != 0:
         profile_form = ProfileForm(instance=request.user.profile)
-        # else:
-        # profile_form = ProfileForm()
-
         context = {'profile_form': profile_form, 'error_message': error_message}
         return render(request, 'profiles/edit.html', context)
 
 
+# --------------------------- Auth
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -97,7 +94,10 @@ def posts_index(request):                       ### We don't have a City model y
     posts = Posts.objects.filter(profile=request.profile) 
     pass
 
+
 def posts_detail(request, posts_id):
-    posts = Posts.object.get(id=posts_id)
+    posts = Posts.objects.get(id=posts_id)
     context = { 'post': posts } #Transition to singular post! For semantics.
     return render(request,'posts/detail.html', context)
+
+

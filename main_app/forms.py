@@ -10,12 +10,12 @@ class ProfileForm(forms.ModelForm):
             'past_cities'
         ]
 
-class PostForm(forms.ModelForm):
+class PostsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
             'title',
-            'author',
+            # 'author',
             'content'
         ]
 
