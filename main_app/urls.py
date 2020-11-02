@@ -7,6 +7,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     # Profile/User urls
     path('profile/', views.profile, name='profile'),
+    path('profile/add_profile/', views.add_profile, name='add_profile'),
     path('profile/update_profile/', views.update_profile, name='update_profile'),
     # Posts
     # path('profile/', views.profile, name='profile'),

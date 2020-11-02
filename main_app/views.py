@@ -21,27 +21,56 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    profile = Profile.objects.filter(user=request.user)[0]
+
     user = User.objects.filter(id=request.user.id)
-    context = {
-        'profile': profile,
-        'user': user
-    }
+    if len(Profile.objects.filter(user=request.user)) == 0:
+        context = {
+            'user': user
+        }
+    else:
+        profile = Profile.objects.filter(user=request.user)[0]    
+        context = {
+            'profile': profile,
+            'user': user
+        }
     return render(request, 'profiles/index.html', context)
 
+@login_required
+def add_profile(request):
+    error_message = ''
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            new_profile = profile_form.save(commit=False)
+            new_profile.user_id = request.user.id
+            new_profile.save()
+            return redirect('profile')
+        else:
+            error_message = 'Something went wrong - try again'
+    else:
+        profile_form = ProfileForm()
+        context = {'profile_form': profile_form, 'error_message': error_message}
+        return render(request, 'profiles/add.html', context)
+
+##update profile currently incomplete
 
 @login_required
 def update_profile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST)
+        # profile_form = ProfileForm(request.POST, instance=request.user.profile) ######################CHECK Here
         if profile_form.is_valid():
-            profile_form.save()
+            updated_profile = profile_form.save()
             return redirect('profile')
         else:
             error_message = 'Something went wrong - try again'
     else:
+        # if len(Profile.objects.filter(user=request.user)) != 0:
         profile_form = ProfileForm(instance=request.user.profile)
+        # else:
+        # profile_form = ProfileForm()
+
         context = {'profile_form': profile_form, 'error_message': error_message}
         return render(request, 'profiles/edit.html', context)
 
@@ -53,7 +82,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('profile')
+            return redirect('add_profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
