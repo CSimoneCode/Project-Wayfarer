@@ -14,5 +14,6 @@ urlpatterns = [
     # path('profile/', views.profile, name='profile'),
     # Auth
     path('registration/signup/', views.signup, name='signup'),
-    
+    # Post urls
+    path('posts/<int:posts_id>', views.posts_detail, name='post_detail') ### route tbd...may change dependent on other routes. 
 ]
