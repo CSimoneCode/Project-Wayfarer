@@ -21,7 +21,7 @@ class Posts(models.Model):
     author = models.CharField(max_length=100)
     post_date = models.DateField(auto_now_add=True)
     content = models.TextField(blank=True)
-    hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
+    # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     # city = models.ForeignKey(City, on_delete=models.CASCADE) ### uncomment when we get City model added
 
