@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import Profile
+from .forms import ProfileForm
 
 
 # --------------------------- STATIC PAGES
@@ -16,8 +19,31 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
+    profile = Profile.objects.filter(user=request.user)
+    user = User.objects.filter(id=request.user.id)
+    context = {
+        'profile': profile,
+        'user': user
+    }
+    return render(request, 'profiles/index.html', context)
 
-    return render(request, 'profile.html')
+
+@login_required
+def update_profile(request):
+    error_message = ''
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile')
+        else:
+            error_message = 'Something went wrong - try again'
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {'profile_form': profile_form, 'error_message': error_message}
+        return render(request, 'profiles/edit.html', context)
+
+
 
 
 def signup(request):
@@ -33,6 +59,7 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
 
 
 # --------------------------- POSTS
