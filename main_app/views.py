@@ -58,19 +58,14 @@ def add_profile(request):
 def update_profile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
-        # profile_form = ProfileForm(request.POST, instance=request.user.profile) ######################CHECK Here
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             updated_profile = profile_form.save()
             return redirect('profile')
         else:
             error_message = 'Something went wrong - try again'
     else:
-        # if len(Profile.objects.filter(user=request.user)) != 0:
         profile_form = ProfileForm(instance=request.user.profile)
-        # else:
-        # profile_form = ProfileForm()
-
         context = {'profile_form': profile_form, 'error_message': error_message}
         return render(request, 'profiles/edit.html', context)
 
