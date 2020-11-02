@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Profile, Posts
-# from .forms import PostsForm 
+from .forms import PostsForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -21,8 +21,8 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-
     user = User.objects.filter(id=request.user.id)
+    posts = Posts.objects.filter(author=request.user.id)
     if len(Profile.objects.filter(user=request.user)) == 0:
         context = {
             'user': user
@@ -31,7 +31,8 @@ def profile(request):
         profile = Profile.objects.filter(user=request.user)[0]    
         context = {
             'profile': profile,
-            'user': user
+            'user': user,
+            'posts': posts
         }
     return render(request, 'profiles/index.html', context)
 
@@ -93,7 +94,10 @@ def posts_index(request):                       ### We don't have a City model y
     posts = Posts.objects.filter(profile=request.profile) 
     pass
 
+
 def posts_detail(request, posts_id):
-    posts = Posts.object.get(id=posts_id)
+    posts = Posts.objects.get(id=posts_id)
     context = { 'post': posts } #Transition to singular post! For semantics.
     return render(request,'posts/detail.html', context)
+
+

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
 
 
 
@@ -18,11 +18,11 @@ class Profile(models.Model):
 
 class Posts(models.Model):
     title = models.CharField(max_length=50)
-    author = models.CharField(max_length=100)
+    # author = models.CharField(max_length=100)
     post_date = models.DateField(auto_now_add=True)
     content = models.TextField(blank=True)
     # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     # city = models.ForeignKey(City, on_delete=models.CASCADE) ### uncomment when we get City model added
 
     def __str__(self):
