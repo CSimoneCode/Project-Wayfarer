@@ -3,6 +3,15 @@
 {% block content %}
 
 
-<h1>Profile</h1>
+<h1>{{ profile.name }}'s Page</h1>
+
+<p>Username: {{ request.user }}</p>
+
+<p>Current City: {{ profile.current_city }}</p>
+<p>Past Cities: {{ profile.past_cities }}</p>
+
+
+
+<a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
 
 {% endblock  %}

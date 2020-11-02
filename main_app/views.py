@@ -3,7 +3,10 @@ from django.contrib.auth import login
 from .models import Profile, Posts
 from .forms import PostsForm 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import Profile
+from .forms import ProfileForm
 
 
 # --------------------------- STATIC PAGES
@@ -18,8 +21,29 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
+    profile = Profile.objects.filter(user=request.user)[0]
+    user = User.objects.filter(id=request.user.id)
+    context = {
+        'profile': profile,
+        'user': user
+    }
+    return render(request, 'profiles/index.html', context)
 
-    return render(request, 'profile.html')
+
+@login_required
+def update_profile(request):
+    error_message = ''
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile')
+        else:
+            error_message = 'Something went wrong - try again'
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+        context = {'profile_form': profile_form, 'error_message': error_message}
+        return render(request, 'profiles/edit.html', context)
 
 
 def signup(request):
@@ -37,8 +61,9 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
+
 # --------------------------- POSTS
 @login_required
-def posts_index(request):                       ### We don't have a City model yet so we'll refactor this when we have that
+def posts_index(request):                       ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
     posts = Posts.objects.filter(profile=request.profile) 
     pass
