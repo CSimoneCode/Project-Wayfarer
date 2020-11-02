@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Profile, Posts
-from .forms import PostsForm 
+# from .forms import PostsForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -67,3 +67,8 @@ def signup(request):
 def posts_index(request):                       ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
     posts = Posts.objects.filter(profile=request.profile) 
     pass
+
+def posts_detail(request, posts_id):
+    posts = Posts.object.get(id=posts_id)
+    context = { 'post': posts } #Transition to singular post! For semantics.
+    return render(request,'posts/detail.html', context)
