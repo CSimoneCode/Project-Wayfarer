@@ -21,19 +21,19 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    user = User.objects.filter(id=request.user.id)
+    found_user = User.objects.filter(id=request.user.id)
     posts = Posts.objects.filter(author=request.user.id)
-    if len(Profile.objects.filter(user=request.user)) == 0:
-        context = {
-            'user': user
-        }
-    else:
-        profile = Profile.objects.filter(user=request.user)[0]    
-        context = {
-            'profile': profile,
-            'user': user,
-            'posts': posts
-        }
+    # if len(Profile.objects.filter(user=request.user)) == 0:
+    #     context = {
+    #         'user': user
+    #     }
+    # else:
+    profile = Profile.objects.filter(user=request.user)[0]    
+    context = {
+        'profile': profile,
+        'found_user': found_user,
+        'posts': posts
+    }
     return render(request, 'profiles/index.html', context)
 
 @login_required
