@@ -26,7 +26,7 @@ class Posts(models.Model):
     # city = models.ForeignKey(City, on_delete=models.CASCADE) ### uncomment when we get City model added
 
     def __str__(self):
-        return f'{self.profile} made post {self.title} on {self.post_date}'
+        return f'{self.author} made post {self.title} on {self.post_date}'
 
 # @receiver(post_save, sender=User)
 # def create_user_profile(sender, instance, created, **kwargs):
