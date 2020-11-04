@@ -78,8 +78,27 @@ nav ul {
 }
 
 // --------------------------------------- Forms
+input {
+    border-bottom: $dark-blue;
+}
 
+label {
+    color: $wash-black;
+}
 
+#input-field input[type=text]:focus {
+    border-bottom: 1px solid $dark-blue !important;
+}
+
+#id_username {
+    color: white;
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: transparent;
+    margin-left: 10px;
+    margin-top: 10px;
+}
 
 // --------------------------------------- Footer
 footer {
