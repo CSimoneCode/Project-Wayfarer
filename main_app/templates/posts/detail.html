@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block title %}Post{% endblock %}
 
-<h1>{{post.title}}</h1>
-<div>{{post.author}}</div>
-<div>{{post.post_date}}</div>
-<div>{{post.content}}</div>
-<div>{{post.hashtags}}</div>
-<div>{{post.profile}}</div>
+{% block content %}
+<h1>{{ post.title }}</h1>
+<div>{{ post.author }}</div>
+<div>{{ post.post_date }}</div>
+<div>{{ post.content }}</div>
+<div>{{ post.hashtags }}</div>
+<div>{{ post.profile }}</div>
 <!---<div>{{posts.city}}</div>-will uncomment once we get the city model setup-->
 
 
@@ -26,4 +27,4 @@
 <a href="{% url 'edit_post' post.id %}" class="btn">Edit Post</a>
 
 {% endblock %}
-
+    

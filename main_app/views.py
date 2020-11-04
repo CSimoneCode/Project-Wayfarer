@@ -44,7 +44,10 @@ def add_profile(request):
             error_message = 'Something went wrong - try again'
     else:
         profile_form = ProfileForm()
-        context = {'profile_form': profile_form, 'error_message': error_message}
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
         return render(request, 'profiles/add.html', context)
 
 ##update profile currently incomplete
@@ -61,7 +64,10 @@ def update_profile(request):
             error_message = 'Something went wrong - try again'
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-        context = {'profile_form': profile_form, 'error_message': error_message}
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
         return render(request, 'profiles/edit.html', context)
 
 
@@ -112,6 +118,11 @@ def cities_index(request):
     return render(request, 'cities/index.html', context)
 
 
+def cities_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {'city': city}
+    return render(request, 'cities/detail.html', context)
+
 # --------------------------- AUTH
 def signup(request):
     error_message = ''
@@ -124,7 +135,10 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
+    context = {
+        'form': form, 
+        'error_message': error_message
+    }
     return render(request, 'registration/signup.html', context)
 
 

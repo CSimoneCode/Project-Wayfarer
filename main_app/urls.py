@@ -11,7 +11,7 @@ urlpatterns = [
     path('profile/update_profile/', views.update_profile, name='update_profile'),
     # Cities
     path('cities/', views.cities_index, name='cities_index'),
-    # path('profile/', views.profile, name='profile'),
+    path('cities/<int:city_id>/', views.cities_detail, name='city_detail'),
     # Auth
     path('registration/signup/', views.signup, name='signup'),
     # Post urls
