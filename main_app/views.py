@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .models import Profile, Posts
-from .forms import PostsForm 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile
-from .forms import ProfileForm
+from .models import Profile, Posts
+from .forms import PostsForm, ProfileForm
 
 
 # --------------------------- STATIC PAGES
@@ -21,19 +19,14 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    user = User.objects.filter(id=request.user.id)
+    found_user = User.objects.filter(id=request.user.id)
     posts = Posts.objects.filter(author=request.user.id)
-    if len(Profile.objects.filter(user=request.user)) == 0:
-        context = {
-            'user': user
-        }
-    else:
-        profile = Profile.objects.filter(user=request.user)[0]    
-        context = {
-            'profile': profile,
-            'user': user,
-            'posts': posts
-        }
+    profile = Profile.objects.filter(user=request.user)[0]    
+    context = {
+        'profile': profile,
+        'found_user': found_user,
+        'posts': posts
+    }
     return render(request, 'profiles/index.html', context)
 
 @login_required
@@ -71,7 +64,49 @@ def update_profile(request):
         return render(request, 'profiles/edit.html', context)
 
 
-# --------------------------- Auth
+# --------------------------- POSTS
+@login_required
+def posts_index(request):     ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
+    posts = Posts.objects.filter(profile=request.profile) 
+    pass
+
+
+def posts_detail(request, posts_id):
+    posts = Posts.objects.get(id=posts_id)
+    context = { 'post': posts } #Transition to singular post! For semantics.
+    return render(request,'posts/detail.html', context)
+
+@login_required
+def delete_post(request, posts_id):
+    if request.method == 'POST':
+        Posts.objects.get(id=posts_id).delete()
+
+        # Will probably want to redirect to the cities page once those are up
+        return redirect('profile')
+
+
+@login_required
+def edit_post(request, posts_id):
+    found_post = Posts.objects.get(id=posts_id)
+    if request.method == 'POST':
+        post_form = PostsForm(request.POST, instance=found_post)
+        if post_form.is_valid():
+            updated_post = post_form.save()
+            return redirect('posts_detail', updated_post.id)
+    else:
+        post_form = PostsForm(instance=found_post)
+        context = {
+            'post': found_post,
+            'post_form': post_form
+        }
+        return render(request, 'posts/edit.html', context)
+            
+
+# --------------------------- CITIES
+
+
+
+# --------------------------- AUTH
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -85,19 +120,5 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
-
-
-
-# --------------------------- POSTS
-@login_required
-def posts_index(request):                       ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
-    posts = Posts.objects.filter(profile=request.profile) 
-    pass
-
-
-def posts_detail(request, posts_id):
-    posts = Posts.objects.get(id=posts_id)
-    context = { 'post': posts } #Transition to singular post! For semantics.
-    return render(request,'posts/detail.html', context)
 
 
