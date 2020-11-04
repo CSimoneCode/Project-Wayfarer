@@ -72,12 +72,6 @@ def update_profile(request):
 
 
 # --------------------------- POSTS
-@login_required
-def posts_index(request):     ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
-    posts = Posts.objects.filter(profile=request.profile) 
-    pass
-
-
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
     context = { 'post': posts } #Transition to singular post! For semantics.
@@ -119,9 +113,15 @@ def cities_index(request):
 
 
 def cities_detail(request, city_id):
-    city = City.objects.get(id=city_id)
-    context = {'city': city}
+    found_city = City.objects.get(id=city_id)
+    posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
+    print(f'city {found_city} posts {posts}')
+    context = {
+        'city': found_city,
+        'posts': posts
+    }
     return render(request, 'cities/detail.html', context)
+
 
 # --------------------------- AUTH
 def signup(request):

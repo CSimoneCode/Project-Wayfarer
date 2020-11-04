@@ -15,9 +15,7 @@ class PostsForm(forms.ModelForm):
         model = Posts
         fields = [
             'title',
-            # 'author',
+            'author',
             'content'
         ]
-
-
         
