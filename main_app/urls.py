@@ -16,4 +16,5 @@ urlpatterns = [
     # Post urls
     path('posts/<int:posts_id>/', views.posts_detail, name='posts_detail'), ### route tbd...may change dependent on other routes. 
     path('posts/<int:posts_id>/delete_post/', views.delete_post, name='delete_post'),
+    path('posts/<int:posts_id>/edit_post/', views.edit_post, name='edit_post'),
 ]

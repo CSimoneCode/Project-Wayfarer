@@ -85,6 +85,23 @@ def delete_post(request, posts_id):
         return redirect('profile')
 
 
+@login_required
+def edit_post(request, posts_id):
+    found_post = Posts.objects.get(id=posts_id)
+    if request.method == 'POST':
+        post_form = PostsForm(request.POST, instance=found_post)
+        if post_form.is_valid():
+            updated_post = post_form.save()
+            return redirect('posts_detail', updated_post.id)
+    else:
+        post_form = PostsForm(instance=found_post)
+        context = {
+            'post': found_post,
+            'post_form': post_form
+        }
+        return render(request, 'posts/edit.html', context)
+            
+
 # --------------------------- CITIES
 
 
