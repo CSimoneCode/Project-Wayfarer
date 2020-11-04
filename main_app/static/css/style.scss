@@ -1,0 +1,105 @@
+// --------------------------------------- Colors
+$wash-black: #292831;
+$dark-blue: #333f58;
+$light-blue: #4a7a96;
+$orange-pink: #ee8695;
+$light-peach: #fbbbad;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    
+    // Gradient Vibe
+    // background-image: linear-gradient(509deg, rgba(233, 233, 233, 0.04) 0%, rgba(233, 233, 233, 0.04) 42%,rgba(51,63,88, 0.04) 42%, rgba(51,63,88, 0.04) 100%),linear-gradient(643deg, rgba(126, 126, 126, 0.04) 0%, rgba(126, 126, 126, 0.04) 35%,rgba(128, 128, 128, 0.04) 35%, rgba(128, 128, 128, 0.04) 100%),linear-gradient(420deg, rgba(51, 51, 51, 0.04) 0%, rgba(51, 51, 51, 0.04) 66%,rgba(237, 237, 237, 0.04) 66%, rgba(237, 237, 237, 0.04) 100%),linear-gradient(576deg, rgba(223, 223, 223, 0.04) 0%, rgba(223, 223, 223, 0.04) 32%,rgba(15, 15, 15, 0.04) 32%, rgba(15, 15, 15, 0.04) 100%),linear-gradient(450deg, rgb(74,122,150),rgb(238,134,149));
+    background-image: 
+    linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
+}
+
+html {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+// --------------------------------------- Titles
+h1 {
+    color: white;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    margin: 0;
+}
+
+.title-cont {
+    display: flex;
+    margin-top: 200px;
+}
+
+.welcome-outline {
+    border-left: 3px solid white;
+    // border: 5px solid white;
+    // border-radius: 5px 5px 30px 5px;
+}
+
+p {
+    color: white;
+    margin-left: 10px;
+    font-size: medium;
+}
+
+// --------------------------------------- Nav-Bar
+nav {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+nav ul {
+    display: flex;
+}
+
+.logo {
+    display: flex;
+}
+
+.nav-wrapper {
+    background-color: transparent;
+}
+
+.brand-logo {
+    display: flex;
+}
+
+// --------------------------------------- Forms
+
+
+
+// --------------------------------------- Footer
+footer {
+    padding-top: 0;
+    text-align: right;
+}
+
+.page-footer {
+    background-color: transparent;
+}
+
+// --------------------------------------- Tablet & Under
+@media (max-width: 500px) {
+    .navbar-fixed {
+        height: 110px;
+    }
+
+    .brand-logo {
+        flex-direction: column;
+    }
+
+
+}
