@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 # from django.dispatch import receiver
 
 
-
 class Profile(models.Model):
     name = models.CharField(max_length=50)
     current_city = models.CharField(max_length=100)
@@ -16,17 +15,28 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+
+class City(models.Model):
+    name = models.CharField(max_length=85)
+    # photo - via uploadcare? 
+    country = models.CharField(max_length=85)
+    region = models.CharField(max_length=85)
+
+    def __str__(self):
+        return f'{self.name}, {self.country}'
+
+
 class Posts(models.Model):
     title = models.CharField(max_length=50)
-    # author = models.CharField(max_length=100)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now_add=True)
     content = models.TextField(blank=True)
     # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    # city = models.ForeignKey(City, on_delete=models.CASCADE) ### uncomment when we get City model added
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.author} made post {self.title} on {self.post_date}'
+
 
 # @receiver(post_save, sender=User)
 # def create_user_profile(sender, instance, created, **kwargs):

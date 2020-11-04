@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/add_profile/', views.add_profile, name='add_profile'),
     path('profile/update_profile/', views.update_profile, name='update_profile'),
     # Cities
+    path('cities/', views.cities_index, name='cities_index'),
     # path('profile/', views.profile, name='profile'),
     # Auth
     path('registration/signup/', views.signup, name='signup'),

@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Posts
+from .models import Profile, Posts, City
 from .forms import PostsForm, ProfileForm
 
 
@@ -28,6 +28,7 @@ def profile(request):
         'posts': posts
     }
     return render(request, 'profiles/index.html', context)
+
 
 @login_required
 def add_profile(request):
@@ -76,6 +77,7 @@ def posts_detail(request, posts_id):
     context = { 'post': posts } #Transition to singular post! For semantics.
     return render(request,'posts/detail.html', context)
 
+
 @login_required
 def delete_post(request, posts_id):
     if request.method == 'POST':
@@ -104,6 +106,10 @@ def edit_post(request, posts_id):
 
 # --------------------------- CITIES
 
+def cities_index(request):
+    cities = City.objects.all()
+    context = {'cities': cities}
+    return render(request, 'cities/index.html', context)
 
 
 # --------------------------- AUTH
