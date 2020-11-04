@@ -2,8 +2,8 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-
-<h1>Sign Up</h1>
+<div class="title-cont">
+<h1 class="welcome-outline">Sign Up</h1>
 
 {% if error_message %}
 <p class="red-text">{{ error_message }}</p>
@@ -14,5 +14,5 @@
   {{ form.as_p }}
   <input type="submit" class="btn" value="Sign Up">
 </form>
-
+</div>
 {% endblock  %}

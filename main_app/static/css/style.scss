@@ -78,12 +78,16 @@ nav ul {
 }
 
 // --------------------------------------- Forms
+form {
+    width: 800px;
+}
+
 input {
     border-bottom: $dark-blue;
 }
 
 label {
-    color: $wash-black;
+    color: white;
 }
 
 #input-field input[type=text]:focus {
@@ -98,6 +102,10 @@ label {
     background-color: transparent;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.helptext {
+    display: none;
 }
 
 // --------------------------------------- Footer
@@ -119,6 +127,4 @@ footer {
     .brand-logo {
         flex-direction: column;
     }
-
-
 }

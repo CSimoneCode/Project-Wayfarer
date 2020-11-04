@@ -2,15 +2,14 @@
 {% block title %}Login{% endblock  %}
 {% block content %}
 
-
-<h1>Log In</h1>
-
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input id="input-field" type="submit" class="btn" value="login">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
-
+<div class="title-cont">
+  <h1 class='login-cont welcome-outline'>Log In</h1>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input id="input-field" type="submit" class="btn" value="login">
+    <input type="hidden" name="next" value="{{ next }}">
+  </form>
+</div>
 
 {% endblock  %}
