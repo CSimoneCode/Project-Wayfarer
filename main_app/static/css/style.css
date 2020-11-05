@@ -34,6 +34,10 @@ main {
   text-orientation: upright;
 }
 
+span.rotate {
+  height: fit-content;
+}
+
 h1, h2 {
   color: white;
   padding: 0;
@@ -79,9 +83,9 @@ form {
 }
 
 .form-cont {
-  position: absolute;
-  top: 202px;
-  left: 600px;
+  height: fit-content;
+  margin-top: 100px;
+  margin-right: 500px;
 }
 
 input {
