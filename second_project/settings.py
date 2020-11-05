@@ -142,5 +142,5 @@ EMAIL_HOST_PASSWORD = 'partyJESUS4lif3'
 
 # Pillow Image Uploader
 
-MEDIA_ROOT = BASE_DIR / 'images'
-MEDIA_URL = '/images/'
+STATIC_ROOT = BASE_DIR / 'images'
+STATIC_URL = '/images/'
