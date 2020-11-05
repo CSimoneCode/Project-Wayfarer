@@ -16,7 +16,7 @@
 <a class="waves-effect waves-light btn modal-trigger pink" href="#modal1">Delete Post</a>
 <div class="modal" id="modal1">
   <div class="modal-content">
-    <h4>Are you sure you want to delete this post?</h4>
+    <h4>Are you sure you want to delete {{ post.title }}?</h4>
   </div>
   <div class="modal-footer">
     <form action="{% url 'delete_post' post.id %}" method="POST">
@@ -29,4 +29,7 @@
 <a href="{% url 'edit_post' post.id %}" class="btn">Edit Post</a>
 {% endif %}
 
+<a href="{% url 'add_comment' post.city.id post.id %}" class="btn">Add Comment</a>
+
 {% endblock %}
+  
