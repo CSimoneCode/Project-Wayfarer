@@ -9,7 +9,8 @@ class ProfileForm(forms.ModelForm):
         fields = [
             'name',
             'current_city',
-            'past_cities'
+            'past_cities',
+            'pic'
         ]
 
 class PostsForm(forms.ModelForm):

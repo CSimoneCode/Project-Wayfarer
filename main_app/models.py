@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from pyuploadcare.dj.forms import ImageField
 
 class Profile(models.Model):
     name = models.CharField(max_length=50)
@@ -8,6 +8,7 @@ class Profile(models.Model):
     join_date = models.DateField(auto_now_add=True)
     past_cities = models.TextField(blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pic = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -33,4 +34,3 @@ class Posts(models.Model):
 
     def __str__(self):
         return f'{self.author} made post {self.title} on {self.post_date}'
-

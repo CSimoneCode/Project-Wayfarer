@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+
+
 urlpatterns = [
     # Static urls
     path('', views.home, name='home'),
@@ -20,3 +22,4 @@ urlpatterns = [
     # Auth
     path('registration/signup/', views.signup, name='signup'),
 ]
+
