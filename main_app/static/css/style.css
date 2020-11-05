@@ -170,11 +170,25 @@ label {
   margin-top: 25px;
 }
 
+ul.errorlist.nonfield {
+  color: white !important;
+  display: flex !important;
+  font-size: x-large;
+}
+
 .truncate {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 3;
   white-space: pre-wrap;
+}
+
+.truncate-comment {
+  display: -webkit-box;
+  white-space: pre-wrap;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
 }
 
 footer {

@@ -188,6 +188,15 @@ label {
     }
 }
 
+// --------------------------------------- Error
+ul.errorlist.nonfield {
+    color: white !important;
+    display: flex !important;
+    font-size: x-large;
+}
+
+
+
 // --------------------------------------- Truncate
 .truncate {
     display: -webkit-box;
@@ -197,6 +206,16 @@ label {
     -webkit-box-orient: vertical;
 }
 
+.truncate-comment {
+    display: -webkit-box;
+    white-space: pre-wrap;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+// --------------------------------------- Footer
 footer {
     padding-top: 0;
     text-align: right;
