@@ -5,10 +5,10 @@
 <h1>Add Comment</h1>
 <h2>{{ city.name }}</h2>
 
-<form method="POST" action="{% url 'add_comment' city.id post.id %}">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Add Comment">
+<form method="post" action="{% url 'add_comment' city.id post.id %}">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" class="btn" value="Add Comment">
 </form>
 
 {% endblock %}
