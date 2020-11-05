@@ -28,10 +28,12 @@ html {
 
 main {
     flex: 1 0 auto;
+    justify-content: space-between;
 }
 
 .container {
     display: flex;
+
 }
 
 // --------------------------------------- Titles
@@ -91,7 +93,9 @@ form {
 }
 
 .form-cont {
-    display: inline-flex;
+    position: absolute;
+    top: 200px;
+    left: 450px;
 }
 
 
@@ -129,6 +133,7 @@ label {
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-left: 200px;
+    margin-top: 25px;
     
 }
 
@@ -139,7 +144,7 @@ label {
 }
 
 .row {
-    margin: auto;
+    height: fit-content;
     align-self: start;
 }
 
