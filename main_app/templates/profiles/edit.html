@@ -11,7 +11,7 @@
 {% endif %}
 
 <div class="form-cont">
-  <form method="post" action="{% url 'update_profile' %}">
+  <form method="POST" action="{% url 'update_profile' %}">
     {% csrf_token %}
     {{ profile_form.as_p }}
     <input type="submit" class="btn" value="Update Profile">

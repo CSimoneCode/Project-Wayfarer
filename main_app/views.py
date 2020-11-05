@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Posts, City, Comment
@@ -83,10 +82,12 @@ def add_photo(request):
 # --------------------------- POSTS
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
-    #city = Posts.city.get()
+    comments = Comment.objects.filter(parent_post_id=posts_id)
+    num_comments=len(comments)
     context = {
         'post': posts,
-        # 'city': city 
+        'comments': comments,
+        'num_comments': num_comments
     }
     return render(request,'posts/detail.html', context)
 
@@ -116,7 +117,6 @@ def delete_post(request, posts_id):
     if request.method == 'POST':
         Posts.objects.get(id=posts_id).delete()
 
-        # Will probably want to redirect to the cities page once those are up
         return redirect('profile')
 
 
@@ -176,12 +176,28 @@ def add_comment(request, city_id, posts_id):
         }
         return render(request, 'comments/add.html', context)
 
+
+@login_required
+def edit_comment(request, city_id, posts_id, comment_id):
+    found_comment = Comment.objects.get(id=comment_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, instance=found_comment)
+        if comment_form.is_valid():
+            updated_comment = comment_form.save()
+            return redirect('posts_detail', posts_id)
+    else: 
+        comment_form = CommentForm(instance=found_comment)
+        context = {
+            'comment_form': comment_form,
+            'comment': found_comment
+        }
+        return render(request, 'comments/edit.html', context)
+
 # --------------------------- AUTH
 def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        # form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             subject = 'Welcome, Traveler.'
@@ -194,7 +210,6 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     form = SignupForm()
-    # form = UserCreationForm()
     context = {
         'form': form, 
         'error_message': error_message
