@@ -32,7 +32,7 @@ main {
   text-orientation: upright;
 }
 
-h1 {
+h1, h2 {
   color: white;
   padding: 0;
   border-left: 3px solid white;
@@ -132,6 +132,16 @@ label {
 
 .about-text {
   font-size: 12px;
+}
+
+.profile-cont {
+  position: absolute;
+  top: 570px;
+  left: 500px;
+}
+
+.profile-cont p {
+  font-size: x-large;
 }
 
 footer {
