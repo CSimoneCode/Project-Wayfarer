@@ -159,20 +159,23 @@ def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        # form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            subject = 'Welcome, Traveler.'
-            message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email]
-            send_mail(subject, message, email_from, recipient_list)
-            login(request, user)
-            return redirect('add_profile')
+            user = form.save(commit=False)
+            new_email = user.email
+            if User.objects.filter(email=new_email):
+                error_message = 'Email already exists'
+            else:
+                user = form.save()
+                subject = 'Welcome, Traveler.'
+                message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email]
+                send_mail(subject, message, email_from, recipient_list)
+                login(request, user)
+                return redirect('add_profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = SignupForm()
-    # form = UserCreationForm()
     context = {
         'form': form, 
         'error_message': error_message
