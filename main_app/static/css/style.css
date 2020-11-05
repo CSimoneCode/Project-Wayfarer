@@ -77,10 +77,6 @@ label {
   margin-bottom: 50px;
 }
 
-#input-field input[type=text]:focus {
-  border-bottom: 1px solid #333f58 !important;
-}
-
 #id_username {
   color: white;
 }
@@ -97,6 +93,11 @@ label {
 
 .helptext {
   display: none;
+}
+
+.about-card-cont-1 {
+  display: flex;
+  flex-direction: column;
 }
 
 footer {

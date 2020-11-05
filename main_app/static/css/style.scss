@@ -92,9 +92,12 @@ label {
     margin-bottom: 50px;
 }
 
-#input-field input[type=text]:focus {
-    border-bottom: 1px solid $dark-blue !important;
-}
+// input:focus {
+//     border-bottom: 1px solid $dark-blue !important;
+//     box-shadow: 1px solid $dark-blue !important;
+// }
+
+
 
 #id_username {
     color: white;
@@ -113,6 +116,14 @@ label {
 .helptext {
     display: none;
 }
+
+// --------------------------------------- About Card
+.about-card-cont-1 {
+    display: flex;
+    flex-direction: column;
+
+}
+
 
 // --------------------------------------- Footer
 footer {
