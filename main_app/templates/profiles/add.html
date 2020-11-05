@@ -2,15 +2,19 @@
 {% block title %}Add{% endblock %}
 
 {% block content %}
-<h1>Add</h1>
+<span  class="rotate">
+    <h1>Add</h1>
+</span>
 
 {% if error_message %}
 <p class="red-text">{{ error_message }}</p>
 {% endif %}
 
-<form method="post" action="{% url 'add_profile' %}">
-  {% csrf_token %}
-  {{ profile_form.as_p }}
-  <input type="submit" class="btn" value="Add Profile">
-</form>
+<div class="form-cont">
+  <form method="post" action="{% url 'add_profile' %}">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <input type="submit" class="btn" value="Add Profile">
+  </form>
+</div>
 {% endblock %}
