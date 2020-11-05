@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'main_app',
     'django_sass',
-    'pyuploadcare.dj'
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'second_project.wsgi.application'
 
 UPLOADCARE = {
     'pub_key': 'a1e5d49ca34791f88ffc',
+    'secret': 'bdef685812ca57ea96fe'
 }
 
 

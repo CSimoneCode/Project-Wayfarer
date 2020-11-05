@@ -7,6 +7,7 @@ from .models import Profile, Posts, City
 from .forms import PostsForm, ProfileForm, SignupForm
 from django.conf import settings
 from django.core.mail import send_mail
+from pyuploadcare.dj.models import ImageField
 
 
 # --------------------------- STATIC PAGES
@@ -73,6 +74,10 @@ def update_profile(request):
             'error_message': error_message
         }
         return render(request, 'profiles/edit.html', context)
+
+def add_photo(request):
+    if request.method == 'POST':
+        photo_form = PhotoForm(request.POST)
 
 
 # --------------------------- POSTS
