@@ -13,8 +13,9 @@ $light-peach: #fbbbad;
 
 body {
     display: flex;
-    min-height: 100vh;
+    justify-content: flex-start;
     flex-direction: column;
+    min-height: 100vh;
     
 // --------------------------------------- Gradient Vibe
     background-image: 
@@ -30,22 +31,24 @@ main {
 }
 
 // --------------------------------------- Titles
-h1 {
-    color: white;
+.rotate {
     writing-mode: vertical-lr;
+    transform:scale(1);
+    width:60px;
+    // margin-right:50px;
     text-orientation: upright;
-    margin: 0;
 }
 
-.title-cont {
-    display: flex;
-    margin-top: 200px;
+h1 {
+    color: white;
+    padding: 0;
+    border-left: 3px solid white;
 }
 
 .welcome-outline {
     border-left: 3px solid white;
-    // border: 5px solid white;
-    // border-radius: 5px 5px 30px 5px;
+    margin-top: 0;
+
 }
 
 p {
@@ -92,13 +95,6 @@ label {
     margin-bottom: 50px;
 }
 
-// input:focus {
-//     border-bottom: 1px solid $dark-blue !important;
-//     box-shadow: 1px solid $dark-blue !important;
-// }
-
-
-
 #id_username {
     color: white;
 }
@@ -118,12 +114,28 @@ label {
 }
 
 // --------------------------------------- About Card
-.about-card-cont-1 {
-    display: flex;
-    flex-direction: column;
-
+.about-cont {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 200px;
+    
 }
 
+.card {
+    width: 200px;
+    height: 300px;
+    justify-content: space-evenly;
+}
+
+.row {
+    margin: auto;
+    align-self: start;
+}
+
+.about-text {
+    font-size: 12px;
+}
 
 // --------------------------------------- Footer
 footer {

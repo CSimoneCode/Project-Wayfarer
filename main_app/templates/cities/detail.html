@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ city.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ city.name }}</h1>
+    <p>{{ city.country }}</p>
+    <p>{{ city.region }}</p>
+    {% for post in posts %}
+    <div><!--Do posts as cards?-->
+        <a href="{% url 'posts_detail' post.id %}">
+            {{ post.title }}
+        </a>
+    </div>
+    {% endfor %}
+    <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+{% endblock %}
+    
