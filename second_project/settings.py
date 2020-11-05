@@ -72,6 +72,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'second_project.wsgi.application'
 
+# UploadCare Config
+
+UPLOADCARE = {
+    'pub_key': 'a1e5d49ca34791f88ffc',
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
