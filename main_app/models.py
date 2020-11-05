@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from pyuploadcare.dj.forms import ImageField
+import datetime
 
 class Profile(models.Model):
     name = models.CharField(max_length=50)
@@ -19,6 +20,8 @@ class City(models.Model):
     # photo - via uploadcare? Elias knows what to do 
     country = models.CharField(max_length=85)
     region = models.CharField(max_length=85)
+    language = models.CharField(max_length=50, blank=True)
+    blurb = models.TextField(blank=True)
 
     def __str__(self):
         return f'{self.name}, {self.country}'

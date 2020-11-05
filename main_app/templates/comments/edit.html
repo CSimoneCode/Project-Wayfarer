@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Edit Comment{% endblock %}
+
+{% block content %}
+<h1>Edit Comment</h1>
+<h2>{{ city.name }}</h2>
+
+<form method="post" action="{% url 'update_comment' comment.parent_post.city.id comment.parent_post.id comment.id %}">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" class="btn" value="Edit Comment">
+</form>
+
+{% endblock %}
+    
