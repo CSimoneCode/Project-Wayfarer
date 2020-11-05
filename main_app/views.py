@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Posts, City
-from .forms import PostsForm, ProfileForm
+from .forms import PostsForm, ProfileForm, SignupForm
+from django.conf import settings
+from django.core.mail import send_mail
+from pyuploadcare.dj.models import ImageField
 
 
 # --------------------------- STATIC PAGES
@@ -19,9 +22,11 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    found_user = User.objects.filter(id=request.user.id)
+    # found_user = User.objects.filter(id=request.user.id)
+    # profile = Profile.objects.filter(user=request.user)[0]   
     posts = Posts.objects.filter(author=request.user.id)
-    profile = Profile.objects.filter(user=request.user)[0]    
+    found_user = User.objects.get(id=request.user.id)
+    profile = Profile.objects.get(user=request.user)
     context = {
         'profile': profile,
         'found_user': found_user,
@@ -70,6 +75,10 @@ def update_profile(request):
         }
         return render(request, 'profiles/edit.html', context)
 
+def add_photo(request):
+    if request.method == 'POST':
+        photo_form = PhotoForm(request.POST)
+        
 
 # --------------------------- POSTS
 def posts_detail(request, posts_id):
@@ -145,19 +154,25 @@ def cities_detail(request, city_id):
     }
     return render(request, 'cities/detail.html', context)
 
-
 # --------------------------- AUTH
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignupForm(request.POST)
+        # form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            subject = 'Welcome, Traveler.'
+            message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email]
+            send_mail(subject, message, email_from, recipient_list)
             login(request, user)
             return redirect('add_profile')
         else:
             error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
+    form = SignupForm()
+    # form = UserCreationForm()
     context = {
         'form': form, 
         'error_message': error_message

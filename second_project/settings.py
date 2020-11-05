@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'main_app',
     'django_sass',
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +71,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'second_project.wsgi.application'
+
+# UploadCare Config
+
+UPLOADCARE = {
+    'pub_key': 'a1e5d49ca34791f88ffc',
+    'secret': 'bdef685812ca57ea96fe'
+}
 
 
 # Database
@@ -124,3 +132,15 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/profile/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'seir.traveldb@gmail.com'
+EMAIL_HOST_PASSWORD = 'partyJESUS4lif3'
+
+# Pillow Image Uploader
+
+MEDIA_ROOT = BASE_DIR / 'images'
+MEDIA_URL = '/images/'

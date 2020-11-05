@@ -2,15 +2,19 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<h1>Sign Up</h1>
+<span  class="rotate">
+    <h1>Sign Up</h1>
+</span>
 
 {% if error_message %}
 <p class="red-text">{{ error_message }}</p>
 {% endif %}
 
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="Sign Up">
-</form>
+<div class="form-cont">
+  <form method="post" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn" value="Sign Up">
+  </form>
+</div>
 {% endblock %}

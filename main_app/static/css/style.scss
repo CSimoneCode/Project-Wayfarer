@@ -13,11 +13,11 @@ $light-peach: #fbbbad;
 
 body {
     display: flex;
-    min-height: 100vh;
+    justify-content: flex-start;
     flex-direction: column;
+    min-height: 100vh;
     
-    // Gradient Vibe
-    // background-image: linear-gradient(509deg, rgba(233, 233, 233, 0.04) 0%, rgba(233, 233, 233, 0.04) 42%,rgba(51,63,88, 0.04) 42%, rgba(51,63,88, 0.04) 100%),linear-gradient(643deg, rgba(126, 126, 126, 0.04) 0%, rgba(126, 126, 126, 0.04) 35%,rgba(128, 128, 128, 0.04) 35%, rgba(128, 128, 128, 0.04) 100%),linear-gradient(420deg, rgba(51, 51, 51, 0.04) 0%, rgba(51, 51, 51, 0.04) 66%,rgba(237, 237, 237, 0.04) 66%, rgba(237, 237, 237, 0.04) 100%),linear-gradient(576deg, rgba(223, 223, 223, 0.04) 0%, rgba(223, 223, 223, 0.04) 32%,rgba(15, 15, 15, 0.04) 32%, rgba(15, 15, 15, 0.04) 100%),linear-gradient(450deg, rgb(74,122,150),rgb(238,134,149));
+// --------------------------------------- Gradient Vibe
     background-image: 
     linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
 }
@@ -28,25 +28,35 @@ html {
 
 main {
     flex: 1 0 auto;
+    justify-content: space-between;
+}
+
+.container {
+    display: flex;
+
 }
 
 // --------------------------------------- Titles
-h1 {
-    color: white;
+.rotate {
     writing-mode: vertical-lr;
+    transform:scale(1);
+    width:60px;
+    // margin-right:50px;
     text-orientation: upright;
-    margin: 0;
 }
 
-.title-cont {
-    display: flex;
-    margin-top: 200px;
+h1, h2 {
+    color: white;
+    padding: 0;
+    border-left: 3px solid white;
+    height: fit-content;
+    margin-top: 285px;
 }
 
 .welcome-outline {
     border-left: 3px solid white;
-    // border: 5px solid white;
-    // border-radius: 5px 5px 30px 5px;
+    margin-top: 0;
+
 }
 
 p {
@@ -78,8 +88,84 @@ nav ul {
 }
 
 // --------------------------------------- Forms
+form {
+    width: 450px;
+    margin-left: 50px;
+}
 
+.form-cont {
+    position: absolute;
+    top: 450px;
+    left: 450px;
+}
 
+input {
+    border-bottom: $dark-blue;
+}
+
+label {
+    color: white;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+#id_username {
+    color: white;
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: transparent;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: $dark-blue;
+}
+
+.helptext {
+    display: none;
+}
+
+// --------------------------------------- About Card
+.about-cont {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 200px;
+    margin-top: 284px;
+    
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    justify-content: space-evenly;
+}
+
+.row {
+    height: fit-content;
+    align-self: start;
+}
+
+.about-text {
+    font-size: 12px;
+}
+
+// --------------------------------------- Profile
+.profile-cont {
+    position: absolute;
+    top: 570px;
+    left: 500px;
+
+    p {
+        font-size: x-large;
+    }
+
+    .btn {
+        margin-top: 25px;
+    }
+}
 
 // --------------------------------------- Footer
 footer {
@@ -100,6 +186,4 @@ footer {
     .brand-logo {
         flex-direction: column;
     }
-
-
 }
