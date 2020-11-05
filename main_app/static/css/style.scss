@@ -20,10 +20,12 @@ body {
 // --------------------------------------- Gradient Vibe
     background-image: 
     linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
+    background-size: cover;
 }
 
 html {
     font-family: 'Courier New', Courier, monospace;
+    min-height: 100%;
 }
 
 main {
@@ -41,7 +43,6 @@ main {
     writing-mode: vertical-lr;
     transform:scale(1);
     width:60px;
-    // margin-right:50px;
     text-orientation: upright;
 }
 
@@ -50,7 +51,7 @@ h1, h2 {
     padding: 0;
     border-left: 3px solid white;
     height: fit-content;
-    margin-top: 150px;
+
 }
 
 .welcome-outline {
@@ -95,8 +96,8 @@ form {
 
 .form-cont {
     position: absolute;
-    top: 450px;
-    left: 450px;
+    top: 202px;
+    left: 600px;
 }
 
 input {
@@ -127,15 +128,7 @@ label {
     display: none;
 }
 
-// --------------------------------------- About Card
-.about-cont {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-left: 200px;
-    margin-top: 284px;
-    
-}
+// --------------------------------------- About Cards
 
 .card {
     width: 200px;
@@ -144,12 +137,19 @@ label {
 }
 
 .row {
-    height: fit-content;
-    align-self: start;
+    max-height: 444px;
 }
 
 .about-text {
     font-size: 12px;
+}
+
+.card-content {
+    max-height: 200px;
+}
+
+.col {
+    max-height: 444px;
 }
 
 // --------------------------------------- Profile
