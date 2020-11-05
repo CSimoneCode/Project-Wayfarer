@@ -30,6 +30,10 @@ main {
     flex: 1 0 auto;
 }
 
+.container {
+    display: flex;
+}
+
 // --------------------------------------- Titles
 .rotate {
     writing-mode: vertical-lr;
@@ -43,6 +47,7 @@ h1 {
     color: white;
     padding: 0;
     border-left: 3px solid white;
+    height: fit-content;
 }
 
 .welcome-outline {
@@ -84,6 +89,11 @@ form {
     width: 450px;
     margin-left: 50px;
 }
+
+.form-cont {
+    display: inline-flex;
+}
+
 
 input {
     border-bottom: $dark-blue;
