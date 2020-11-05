@@ -24,10 +24,10 @@ class City(models.Model):
 
 
 class Posts(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     post_date = models.DateTimeField(auto_now_add=True)
-    content = models.TextField(blank=True)
+    content = models.TextField()
     # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
