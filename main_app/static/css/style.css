@@ -116,6 +116,24 @@ label {
   display: none;
 }
 
+.red-text {
+  color: white !important;
+  height: 150px;
+}
+
+.parent-card {
+  display: inline-flex;
+  flex-wrap: wrap;
+  height: 945px;
+  margin-top: 27px;
+}
+
+.card1 {
+  width: 425px;
+  max-height: 454px;
+  margin: 5px;
+}
+
 .card {
   width: 200px;
   height: 300px;
@@ -123,7 +141,7 @@ label {
 }
 
 .row {
-  max-height: 444px;
+  height: 444px;
 }
 
 .about-text {
@@ -150,6 +168,13 @@ label {
 
 .profile-cont .btn {
   margin-top: 25px;
+}
+
+.truncate {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  white-space: pre-wrap;
 }
 
 footer {

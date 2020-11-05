@@ -133,10 +133,23 @@ label {
 }
 
 .red-text {
-
+    color: white !important;
+    height: 150px;
 }
 
 // --------------------------------------- About Cards
+.parent-card {
+    display: inline-flex;
+    flex-wrap: wrap;
+    height: 945px;
+    margin-top: 27px;
+}
+
+.card1 {
+    width: 425px;
+    max-height: 454px;
+    margin: 5px;
+}
 
 .card {
     width: 200px;
@@ -145,7 +158,7 @@ label {
 }
 
 .row {
-    max-height: 444px;
+    height: 444px;
 }
 
 .about-text {
@@ -175,7 +188,15 @@ label {
     }
 }
 
-// --------------------------------------- Footer
+// --------------------------------------- Truncate
+.truncate {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+}
+
 footer {
     padding-top: 0;
     text-align: right;
