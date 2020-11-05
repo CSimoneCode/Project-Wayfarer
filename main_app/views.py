@@ -78,7 +78,7 @@ def update_profile(request):
 def add_photo(request):
     if request.method == 'POST':
         photo_form = PhotoForm(request.POST)
-
+        
 
 # --------------------------- POSTS
 def posts_detail(request, posts_id):

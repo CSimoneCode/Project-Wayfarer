@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
@@ -6,6 +6,7 @@
 <span class="rotate">
   <h2>{{ profile.name }}'s Page</h2>
 </span>
+
 
 {% for post in posts %}
 <a href="{% url 'posts_detail' post.id %}">
@@ -22,9 +23,12 @@
 
 <div class="profile-cont">
   <p >Username: {{ request.user }}</p>
+  <p >Profile Pic: <img class='img-fluid' src=' {{ profile.pic.cdn_url }} '/>
   <p >Current City: {{ profile.current_city }}</p>
   <p >Past Cities: {{ profile.past_cities }}</p>
   <p >Joined: {{ profile.join_date }}</p>
   <a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
 </div>
+
+
 {% endblock %}
