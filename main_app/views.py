@@ -105,7 +105,6 @@ def edit_post(request, posts_id):
 # --------------------------- CITIES
 
 
-
 # --------------------------- AUTH
 def signup(request):
     error_message = ''
