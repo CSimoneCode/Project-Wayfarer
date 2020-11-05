@@ -20,6 +20,7 @@
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
+            <li><a href="{% url 'cities_index' %}">View Cities</a></li>
             <li><a href="{% url 'profile' %}">My Page</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}

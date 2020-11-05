@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}Profile{% endblock  %}
+{% block title %}Profile{% endblock %}
+
 {% block content %}
-
-
 <h2>{{ profile.name }}'s Page</h2>
 
 <p>Username: {{ request.user }}</p>
@@ -26,5 +25,4 @@
 {% endfor %}
 
 <a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
-
-{% endblock  %}
+{% endblock %}

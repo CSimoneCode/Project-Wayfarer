@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Posts
+from .models import Profile, Posts, City
 from .forms import PostsForm, ProfileForm
 
 
@@ -29,6 +29,7 @@ def profile(request):
     }
     return render(request, 'profiles/index.html', context)
 
+
 @login_required
 def add_profile(request):
     error_message = ''
@@ -43,7 +44,10 @@ def add_profile(request):
             error_message = 'Something went wrong - try again'
     else:
         profile_form = ProfileForm()
-        context = {'profile_form': profile_form, 'error_message': error_message}
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
         return render(request, 'profiles/add.html', context)
 
 ##update profile currently incomplete
@@ -60,21 +64,43 @@ def update_profile(request):
             error_message = 'Something went wrong - try again'
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-        context = {'profile_form': profile_form, 'error_message': error_message}
+        context = {
+            'profile_form': profile_form, 
+            'error_message': error_message
+        }
         return render(request, 'profiles/edit.html', context)
 
 
 # --------------------------- POSTS
-@login_required
-def posts_index(request):     ### We don't have a City model yet or have the Profile yet so we'll refactor this when we have that
-    posts = Posts.objects.filter(profile=request.profile) 
-    pass
-
-
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
-    context = { 'post': posts } #Transition to singular post! For semantics.
+    #city = Posts.city.get()
+    context = {
+        'post': posts,
+        # 'city': city 
+    }
     return render(request,'posts/detail.html', context)
+
+
+@login_required
+def add_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        posts_form = PostsForm(request.POST)
+        if posts_form.is_valid():
+            new_post = posts_form.save(commit=False)
+            new_post.author_id = request.user.id
+            new_post.city = city
+            new_post.save()
+            return redirect('posts_detail', new_post.id)
+    else: 
+        posts_form = PostsForm()
+        context = {
+            'posts_form': posts_form,
+            'city': city
+        }
+        return render(request, 'posts/add.html', context)
+
 
 @login_required
 def delete_post(request, posts_id):
@@ -104,6 +130,20 @@ def edit_post(request, posts_id):
 
 # --------------------------- CITIES
 
+def cities_index(request):
+    cities = City.objects.all()
+    context = {'cities': cities}
+    return render(request, 'cities/index.html', context)
+
+
+def cities_detail(request, city_id):
+    found_city = City.objects.get(id=city_id)
+    posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
+    context = {
+        'city': found_city,
+        'posts': posts
+    }
+    return render(request, 'cities/detail.html', context)
 
 
 # --------------------------- AUTH
@@ -118,7 +158,10 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
+    context = {
+        'form': form, 
+        'error_message': error_message
+    }
     return render(request, 'registration/signup.html', context)
 
 
