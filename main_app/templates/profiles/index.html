@@ -2,14 +2,10 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<h2>{{ profile.name }}'s Page</h2>
 
-<p>Username: {{ found_user }}</p>
-
-<p>Current City: {{ profile.current_city }}</p>
-<p>Past Cities: {{ profile.past_cities }}</p>
-<p>Joined: {{ profile.join_date }}</p>
-
+<span class="rotate">
+  <h2>{{ profile.name }}'s Page</h2>
+</span>
 
 {% for post in posts %}
 <a href="{% url 'posts_detail' post.id %}">
@@ -24,5 +20,11 @@
 </a>
 {% endfor %}
 
-<a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
+<div class="profile-cont">
+  <p >Username: {{ request.user }}</p>
+  <p >Current City: {{ profile.current_city }}</p>
+  <p >Past Cities: {{ profile.past_cities }}</p>
+  <p >Joined: {{ profile.join_date }}</p>
+  <a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
+</div>
 {% endblock %}
