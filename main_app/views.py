@@ -8,6 +8,7 @@ from .forms import PostsForm, ProfileForm, SignupForm
 from django.conf import settings
 from django.core.mail import send_mail
 from pyuploadcare.dj.models import ImageField
+import datetime
 
 
 # --------------------------- STATIC PAGES
@@ -148,6 +149,7 @@ def cities_index(request):
 def cities_detail(request, city_id):
     found_city = City.objects.get(id=city_id)
     posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
+    # time_diff = datetime.datetime.now()
     context = {
         'city': found_city,
         'posts': posts

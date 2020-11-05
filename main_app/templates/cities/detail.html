@@ -6,10 +6,13 @@
     <p>{{ city.country }}</p>
     <p>{{ city.region }}</p>
     {% for post in posts %}
-    <div><!--Do posts as cards?-->
-        <a href="{% url 'posts_detail' post.id %}">
-            {{ post.title }}
-        </a><span> - {{ post.author.user }} - {{ post.post_date }}</span>
+    <div class="card pink"><!--Do posts as cards?-->
+        <div class="card-content">
+            <span class="card-title">{{ post.title }}</span>
+            <span>{{ post.author.user }} - {{ post.post_date }}</span>
+            <p class="truncate">{{ post.content }}</p>
+        </div>
+        <a href="{% url 'posts_detail' post.id %}">View post</a>
     </div>
     {% endfor %}
     <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
