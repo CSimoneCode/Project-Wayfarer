@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=85)
-    # photo - via uploadcare? 
+    # photo - via uploadcare? Elias knows what to do 
     country = models.CharField(max_length=85)
     region = models.CharField(max_length=85)
 
@@ -26,10 +26,10 @@ class City(models.Model):
 class Posts(models.Model):
     title = models.CharField(max_length=50)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    post_date = models.DateField(auto_now_add=True)
+    post_date = models.DateTimeField(auto_now_add=True)
     content = models.TextField(blank=True)
     # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
-    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.author} made post {self.title} on {self.post_date}'

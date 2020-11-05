@@ -74,8 +74,32 @@ def update_profile(request):
 # --------------------------- POSTS
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
-    context = { 'post': posts } #Transition to singular post! For semantics.
+    #city = Posts.city.get()
+    context = {
+        'post': posts,
+        # 'city': city 
+    }
     return render(request,'posts/detail.html', context)
+
+
+@login_required
+def add_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        posts_form = PostsForm(request.POST)
+        if posts_form.is_valid():
+            new_post = posts_form.save(commit=False)
+            new_post.author_id = request.user.id
+            new_post.city = city
+            new_post.save()
+            return redirect('posts_detail', new_post.id)
+    else: 
+        posts_form = PostsForm()
+        context = {
+            'posts_form': posts_form,
+            'city': city
+        }
+        return render(request, 'posts/add.html', context)
 
 
 @login_required
@@ -115,7 +139,6 @@ def cities_index(request):
 def cities_detail(request, city_id):
     found_city = City.objects.get(id=city_id)
     posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
-    print(f'city {found_city} posts {posts}')
     context = {
         'city': found_city,
         'posts': posts
