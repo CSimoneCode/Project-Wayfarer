@@ -9,7 +9,7 @@
     <div><!--Do posts as cards?-->
         <a href="{% url 'posts_detail' post.id %}">
             {{ post.title }}
-        </a>
+        </a><span> - {{ post.author.user }} - {{ post.post_date }}</span>
     </div>
     {% endfor %}
     <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>

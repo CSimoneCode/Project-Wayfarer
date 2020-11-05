@@ -2,16 +2,17 @@
 {% block title %}Post{% endblock %}
 
 {% block content %}
-<span><a href="{% url 'cities_detail' post.city.id %}" class="white-text"><<< Back</a></span>
+<span><a href="{% url 'cities_detail' post.city.id %}" class="white-text"><-Back To City Page</a></span>
 <h1>{{ post.city.name }}</h1>
 <h2>{{ post.title }}</h2>
-<div>{{ post.author }}</div>
+<div>Author: {{ post.author.user }}</div>
 <div>{{ post.post_date }}</div>
 <div>{{ post.content }}</div>
 <!-- <div>{{ post.hashtags }}</div> -->
 <div>{{ posts.city }}</div>
 
 
+{% if post.author.id == request.user.id %}
 <a class="waves-effect waves-light btn modal-trigger pink" href="#modal1">Delete Post</a>
 <div class="modal" id="modal1">
   <div class="modal-content">
@@ -26,6 +27,6 @@
   </div>
 </div>
 <a href="{% url 'edit_post' post.id %}" class="btn">Edit Post</a>
+{% endif %}
 
 {% endblock %}
-    

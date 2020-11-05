@@ -19,9 +19,11 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    found_user = User.objects.filter(id=request.user.id)
+    # found_user = User.objects.filter(id=request.user.id)
+    # profile = Profile.objects.filter(user=request.user)[0]   
     posts = Posts.objects.filter(author=request.user.id)
-    profile = Profile.objects.filter(user=request.user)[0]    
+    found_user = User.objects.get(id=request.user.id)
+    profile = Profile.objects.get(user=request.user)
     context = {
         'profile': profile,
         'found_user': found_user,
