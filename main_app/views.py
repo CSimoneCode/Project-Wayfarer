@@ -3,8 +3,8 @@ from django.contrib.auth import login
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Posts, City
-from .forms import PostsForm, ProfileForm, SignupForm
+from .models import Profile, Posts, City, Comment
+from .forms import PostsForm, ProfileForm, SignupForm, CommentForm
 from django.conf import settings
 from django.core.mail import send_mail
 from pyuploadcare.dj.models import ImageField
@@ -138,7 +138,6 @@ def edit_post(request, posts_id):
             
 
 # --------------------------- CITIES
-
 def cities_index(request):
     cities = City.objects.all()
     context = {'cities': cities}
@@ -153,6 +152,29 @@ def cities_detail(request, city_id):
         'posts': posts
     }
     return render(request, 'cities/detail.html', context)
+
+
+# --------------------------- COMMENTS
+@login_required
+def add_comment(request, city_id, posts_id):
+    city = City.objects.get(id=city_id)
+    found_post = Posts.objects.get(id=posts_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.author_id = request.user.id 
+            new_comment.parent_post_id = posts_id
+            new_comment.save()
+            return redirect('posts_detail', posts_id)
+    else: 
+        comment_form = CommentForm()
+        context = {
+            'comment_form': comment_form,
+            'city': city,
+            'post': found_post
+        }
+        return render(request, 'comments/add.html', context)
 
 # --------------------------- AUTH
 def signup(request):

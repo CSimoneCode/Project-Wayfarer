@@ -29,4 +29,7 @@
 <a href="{% url 'edit_post' post.id %}" class="btn">Edit Post</a>
 {% endif %}
 
+<a href="{% url 'add_comment' post.city.id post.id %}" class="btn">Add Comment</a>
+
 {% endblock %}
+  
