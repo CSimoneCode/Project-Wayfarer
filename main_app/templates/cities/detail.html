@@ -6,19 +6,26 @@
     <h1>{{ city.name }}</h1>
 </span>
 
+<div class="city-img">
+    <img src="https://picsum.photos/seed/picsum/300/400">
+    <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+</div>
 <div class="city-cont">
     <p>{{ city.country }}</p>
     <p>{{ city.region }}</p>
     <p>{{ city.language }}</p>
     <p>{{ city.blurb }}</p>
+
+<div class="city-scroll">
     {% for post in posts %}
-    <div><!--Do posts as cards?-->
+    <div class="card transparent"><!--Do posts as cards?-->
         <a href="{% url 'posts_detail' post.id %}">
-            {{ post.title }}
-        </a><span> - {{ post.author.user }} - {{ post.post_date }}</span>
+            {{ post.title }}|
+        </a>
+        <span> - {{ post.author.user }} - {{ post.post_date }}</span>
     </div>
     {% endfor %}
-    <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+    </div>
 </div>
 {% endblock %}
     

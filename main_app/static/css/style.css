@@ -11,6 +11,7 @@ body {
   min-height: 100vh;
   background-image: linear-gradient(360deg, #292831, #4a7a96, #ee8695);
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 html {
@@ -128,13 +129,13 @@ label {
   margin-top: 27px;
 }
 
-.card1 {
+.parent-card .card1 {
   width: 425px;
   max-height: 454px;
   margin: 5px;
 }
 
-.card {
+.parent-card .card {
   width: 200px;
   height: 300px;
   justify-content: space-evenly;
@@ -176,6 +177,19 @@ ul.errorlist.nonfield {
   font-size: x-large;
 }
 
+div.city-img {
+  height: 400px;
+  margin-top: 41px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+div.city-img .btn, div.city-img .btn-large, div.city-img .btn-small {
+  background-color: transparent;
+  margin-left: 0 !important;
+  margin-top: 10px;
+}
+
 .city-cont {
   display: block;
   width: 82%;
@@ -183,12 +197,41 @@ ul.errorlist.nonfield {
 }
 
 .city-cont p {
-  margin-bottom: 75px;
+  margin-bottom: 25px;
 }
 
 .city-cont a {
   color: white;
   font-size: x-large;
+}
+
+.city-cont .card {
+  display: block;
+  height: fit-content;
+  margin-left: 10px;
+  background-color: transparent;
+}
+
+.city-cont .card a {
+  display: block;
+}
+
+.city-scroll {
+  height: 350px;
+  overflow: scroll;
+}
+
+.city-scroll::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
 }
 
 .truncate {
