@@ -311,6 +311,18 @@ label {
         border-radius: 5px;
     }
 }
+// --------------------------------------- Post
+#add-post {
+    margin-top: 38px;
+}
+
+input#id_title {
+    color: white;
+}
+
+textarea#id_content {
+    color: white;
+}
 
 // --------------------------------------- Error
 ul.errorlist.nonfield {
