@@ -230,11 +230,13 @@ input#id_username {
     flex-wrap: wrap;
     height: 945px;
     margin-top: 27px;
+
     
     .card1 {
         width: 425px;
         max-height: 454px;
         margin: 5px;
+    
     }
     
     .card {
@@ -242,12 +244,20 @@ input#id_username {
         height: 300px;
         justify-content: space-evenly;
         background-color: transparent;
+        border-radius: 50% !important;
     }
+}
+
+img {
+    border-radius: 50% !important;
+    border: 3px solid white;
 }
 
 .card-image {
     height: 100%;
     display: flex;
+    border-radius: 50% !important;
+    background-color: transparent;
 }
 
 .row {
