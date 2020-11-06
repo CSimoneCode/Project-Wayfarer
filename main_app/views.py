@@ -65,7 +65,7 @@ def add_profile(request):
 def update_profile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
             updated_profile = profile_form.save()
             return redirect('profile')
@@ -78,10 +78,6 @@ def update_profile(request):
             'error_message': error_message
         }
         return render(request, 'profiles/edit.html', context)
-
-def add_photo(request):
-    if request.method == 'POST':
-        photo_form = PhotoForm(request.POST)
         
 
 # --------------------------- POSTS
