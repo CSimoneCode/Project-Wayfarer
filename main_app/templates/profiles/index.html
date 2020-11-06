@@ -1,51 +1,61 @@
 {% extends 'base.html' %} 
 
-{% block title %}Profile{% endblock %}
+{% block title %} | Profile{% endblock %}
 {% load static %}
 {% block content %}
 
-<span class="rotate">
-  <h2>{{ profile.name }}'s Page</h2>
-</span>
 
-<div class="posts-div">
-  {% for post in posts %}
-  <a href="{% url 'posts_detail' post.id %}">
-    <div class="card pink">
-      <div class="card-content">
-        <span class="card-title">{{ post.title }}</span>
-        <p>{{ post.author }}</p>
-        <p>{{ post.post_date }}</p>
-        <p class="truncate">{{ post.content }}</p>
+<span class="rotate"><h2>{{ profile.name }}</h2></span>
+<a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
+<div class="profile-cont">
+  <p >Username | {{ request.user }} <small> | Joined | {{ profile.join_date }}</small></p>
+  <p >Current City | {{ profile.current_city }}</p>
+  {% if profile.past_cites %}
+    <p >Past Cities | {{ profile.past_cities }}</p>
+  {% endif %}
+</div>
+
+<div class="profile-content">
+  <div class="posts-div">
+    <p class="white-text">Posts | {{ num_posts }}</p>
+    {% for post in posts %}
+      <div class="card post-card transparent">
+        <div class="card-content">
+        <div>
+          <span class="card-title"><a href="{% url 'posts_detail' post.id %}">{{ post.title }}</a></span>
+          <p>{{ post.author }}</p>
+          <p>{{ post.post_date }}</p>
+        </div>
+        <div>
+          <p class="truncate">{{ post.content }}</p>
+        </div>
+        </div>
       </div>
-    </div>
-  </a>
+
+    {% endfor %}
+  </div>
+
+
+
+  <div class="comments-div">
+    <p class="white-text">Comments | {{ num_comments }}</p>
+    {% for comment in comments %}
+      <div class="card transparent">
+        <div class="card-content">
+          <div>
+            <span class="card-title white-text">{{ comment.title }}</span>
+            <p>{{ comment.parent_post.city }}</p>
+            <p>{{ comment.post_date }}</p>
+          </div>
+          <div>
+            <p class="truncate-comment">{{ comment.content }}</p>
+          </div>
+        </div>
+      </div>
   {% endfor %}
 </div>
+ {% comment %} <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p> {% endcomment %}
 
-<p>Comments: {{ num_comments }}</p>
-<div class="comments-div">
-  {% for comment in comments %}
-    <div class="card teal">
-      <div class="card-content">
-        <span class="card-title">{{ comment.title }}</span>
-        <p>{{ comment.parent_post.city }}</p>
-        <p>{{ comment.post_date }}</p>
-        <p class="truncate-comment">{{ comment.content }}</p>
-      </div>
-    </div>
-  </div>
-</a>
-{% endfor %}
- <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p>
-
-<div class="profile-cont">
-  <p >Username: {{ request.user }}</p>
-  <p >Current City: {{ profile.current_city }}</p>
-  <p >Past Cities: {{ profile.past_cities }}</p>
-  <p >Joined: {{ profile.join_date }}</p>
-  <a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
-</div>
 
 
 {% endblock %}

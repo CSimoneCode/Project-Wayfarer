@@ -21,6 +21,7 @@ body {
     background-image: 
     linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 html {
@@ -174,10 +175,22 @@ label {
 }
 
 // --------------------------------------- Profile
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 65%;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+}
+
 .profile-cont {
     position: absolute;
-    top: 570px;
-    left: 500px;
+    top: 10%;
+    left: 25%;
 
     p {
         font-size: x-large;
@@ -185,6 +198,80 @@ label {
 
     .btn {
         margin-top: 25px;
+    }
+}
+
+.posts-div {
+    height: 225px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    .card {
+        width: 100%;
+        height: 200px;
+    }
+    .card-content {
+        display: flex;
+        
+        div:nth-of-type(1) {
+            width: 23%;
+            border-right: 1px solid white;
+            margin-right: 10px;
+        }
+        div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+        }
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
+
+.comments-div {
+    height: 225px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .card-content {
+        display: flex;
+        
+        div:nth-of-type(1) {
+            width: 23%;
+            border-right: 1px solid white;
+            margin-right: 10px;
+        }
+        div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+        }
+    }
+    
+    .card {
+        width: 100%;
+        height: 200px;
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
     }
 }
 
@@ -211,7 +298,10 @@ ul.errorlist.nonfield {
         font-size: x-large;
     }
 }
-
+a {
+    color: white;
+    font-size: x-large;
+}
 
 
 // --------------------------------------- Truncate

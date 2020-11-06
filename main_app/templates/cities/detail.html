@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ city.name }}{% endblock %}
+{% block title %} | {{ city.name }}{% endblock %}
 
 {% block content %}
 <span  class="rotate">
@@ -12,7 +12,7 @@
     <p>{{ city.language }}</p>
     <p>{{ city.blurb }}</p>
     {% for post in posts %}
-    <div><!--Do posts as cards?-->
+    <div class="card transparent">
         <a href="{% url 'posts_detail' post.id %}">
             {{ post.title }}
         </a><span> - {{ post.author.user }} - {{ post.post_date }}</span>
