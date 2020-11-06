@@ -324,6 +324,31 @@ textarea#id_content {
     color: white;
 }
 
+
+textarea {
+    width: 100%;
+    height: 10rem;
+    background-color: transparent;
+}
+
+// --------------------------------------- Modals
+.modal {
+    background-image: 
+    linear-gradient(45deg, $wash-black, $light-blue, $orange-pink);
+    
+}
+
+.modal .modal-footer {
+    background-color: transparent
+}
+
+.modal-content {
+    h4 {
+        color: white;
+    }
+}
+
+
 // --------------------------------------- Error
 ul.errorlist.nonfield {
     color: white !important;
@@ -343,7 +368,6 @@ div.city-img {
         margin-left: 0 !important;
         margin-top: 10px;
     }
-
 }
 
 .city-cont {
