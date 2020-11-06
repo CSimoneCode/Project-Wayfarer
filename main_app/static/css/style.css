@@ -416,22 +416,27 @@ div.city-img .btn, div.city-img .btn-large, div.city-img .btn-small {
   display: block;
 }
 
-.city-cont .card::-webkit-scrollbar {
-  background-color: transparent;
-}
-
-.city-cont .card::-webkit-scrollbar-corner {
-  background-color: transparent;
-}
-
-.city-cont .card::-webkit-scrollbar-thumb {
-  background-color: #4a7a96;
-  border-radius: 5px;
-}
-
 a {
   color: white;
   font-size: x-large;
+}
+
+.city-scroll {
+  height: 200px;
+  overflow: scroll;
+}
+
+.city-scroll::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
 }
 
 .truncate {

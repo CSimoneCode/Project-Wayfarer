@@ -2,13 +2,16 @@
 {% block title %} | Edit Post{% endblock %}
 
 {% block content %}
+<span  class="rotate">
 <h1>Edit Post</h1>
+</span>
 
 
-<form method="post" action="{% url 'edit_post' post.id %}">
-  {% csrf_token %}
-  {{ post_form.as_p }}
-  <input type="submit" class="btn" value="Edit Post">
-</form>
-
+<div class="form-cont">
+  <form method="post" action="{% url 'edit_post' post.id %}">
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <input type="submit" class="btn" value="Edit Post">
+  </form>
+</div>
 {% endblock %}
