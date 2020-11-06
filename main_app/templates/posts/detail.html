@@ -70,7 +70,7 @@
       <form action="{% url 'delete_post' post.id %}" method="POST">
         {% csrf_token %}
         <input type="submit" class="btn" value="Yes">
-        <a href="{% url 'posts_detail' post.id %}" class="btn blue">No</a>
+        <a href="{% url 'posts_detail' post.id %}" class="delete-btn">No</a>
       </form>
     </div>
   </div>
