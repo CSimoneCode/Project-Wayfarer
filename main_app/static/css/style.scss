@@ -144,19 +144,20 @@ label {
     flex-wrap: wrap;
     height: 945px;
     margin-top: 27px;
+    
+    .card1 {
+        width: 425px;
+        max-height: 454px;
+        margin: 5px;
+    }
+    
+    .card {
+        width: 200px;
+        height: 300px;
+        justify-content: space-evenly;
+    }
 }
 
-.card1 {
-    width: 425px;
-    max-height: 454px;
-    margin: 5px;
-}
-
-.card {
-    width: 200px;
-    height: 300px;
-    justify-content: space-evenly;
-}
 
 .row {
     height: 444px;
@@ -283,25 +284,62 @@ ul.errorlist.nonfield {
 }
 
 // --------------------------------------- Cities
+div.city-img {
+    height: 400px;
+    margin-top: 41px;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    .btn, .btn-large, .btn-small {
+        background-color: transparent;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+
+}
 
 .city-cont {
     display: block;
     width: 82%;
     margin-top: 42px;
-
+    
     p {
-        margin-bottom: 75px;
+        margin-bottom: 25px;
     }
     
     a {
         color: white;
         font-size: x-large;
     }
+
+    .card {
+        display: block;
+        height: fit-content;
+        margin-left: 10px;
+        background-color: transparent;
+    
+        a {
+            display: block;
+        }
+    
+    }
 }
 a {
     color: white;
     font-size: x-large;
 }
+
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+
 
 
 // --------------------------------------- Truncate
