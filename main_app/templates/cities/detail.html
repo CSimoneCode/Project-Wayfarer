@@ -5,6 +5,8 @@
 <h1>{{ city.name }}</h1>
     <p>{{ city.country }}</p>
     <p>{{ city.region }}</p>
+    <p>{{ city.language }}</p>
+    <p>{{ city.blurb }}</p>
     {% for post in posts %}
     <div><!--Do posts as cards?-->
         <a href="{% url 'posts_detail' post.id %}">
