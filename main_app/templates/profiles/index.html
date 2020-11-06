@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
-{% block title %}Profile{% endblock %}
 
+{% block title %}Profile{% endblock %}
+{% load static %}
 {% block content %}
 
 <span class="rotate">
@@ -33,13 +34,13 @@
         <p class="truncate">{{ comment.content }}</p>
       </div>
     </div>
-  </a>
-  {% endfor %}
-</div>
+  </div>
+</a>
+{% endfor %}
+ <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p>
 
 <div class="profile-cont">
   <p >Username: {{ request.user }}</p>
-  <p >Profile Pic: <img class='img-fluid' src=' {{ profile.pic }} '/>
   <p >Current City: {{ profile.current_city }}</p>
   <p >Past Cities: {{ profile.past_cities }}</p>
   <p >Joined: {{ profile.join_date }}</p>
