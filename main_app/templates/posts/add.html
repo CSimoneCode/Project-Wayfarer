@@ -2,14 +2,17 @@
 {% block title %}Add Post{% endblock %}
 
 {% block content %}
-<h1>Add Post</h1>
-<h2>{{ city.name }}</h2>
+<span class="rotate">
+    <h1>Add Post</h1>
+    <h2>{{ city.name }}</h2>
+</span>
 
-<form method="post" action="{% url 'add_post' city.id %}">
-  {% csrf_token %}
-  {{ posts_form.as_p }}
-  <input type="submit" class="btn" value="Add Post">
-</form>
-
+<div class="form-cont">
+  <form method="post" action="{% url 'add_post' city.id %}">
+    {% csrf_token %}
+    {{ posts_form.as_p }}
+    <input type="submit" class="btn" value="Add Post">
+  </form>
+</div>
 {% endblock %}
     

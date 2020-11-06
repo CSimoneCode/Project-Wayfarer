@@ -16,7 +16,9 @@
     <p>{{ city.language }}</p>
     <p>{{ city.blurb }}</p>
 
+
 <div class="city-scroll">
+<p class="white-text">Posts |</p>
     {% for post in posts %}
     <div class="card transparent"><!--Do posts as cards?-->
         <a href="{% url 'posts_detail' post.id %}">
