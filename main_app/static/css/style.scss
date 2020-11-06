@@ -329,6 +329,9 @@ a {
     font-size: x-large;
 }
 
+.city-scroll {
+    height: 200px;
+    overflow: scroll;
     &::-webkit-scrollbar {
         background-color: transparent;
     }
@@ -339,6 +342,7 @@ a {
         background-color: $light-blue;
         border-radius: 5px;
     }
+}
 
 
 
