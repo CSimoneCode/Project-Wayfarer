@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}All Cities{% endblock %}
+{% block title %} | All Cities{% endblock %}
 
 {% block content %}
-<h1>All Cities</h1>
-    {% for city in cities %}
-    <a href="{% url 'cities_detail' city.id %}">
-        <p>{{ city.name }}, {{ city.country }}</p>
-    </a>
-    {% endfor %}
+<span  class="rotate">
+    <h1>All Cities</h1>
+</span>
+
+<div class="city-cont">
+{% for city in cities %}
+    <p>
+        <a class="city-link" href="{% url 'cities_detail' city.id %}">{{ city.name }}, {{ city.country }}</a>
+    </p>
+{% endfor %}
+</div>
 {% endblock %}
     

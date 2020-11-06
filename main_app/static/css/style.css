@@ -10,10 +10,13 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-image: linear-gradient(360deg, #292831, #4a7a96, #ee8695);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 html {
   font-family: 'Courier New', Courier, monospace;
+  min-height: 100%;
 }
 
 main {
@@ -25,6 +28,11 @@ main {
   display: flex;
 }
 
+::placeholder {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
+
 .rotate {
   writing-mode: vertical-lr;
   transform: scale(1);
@@ -32,12 +40,15 @@ main {
   text-orientation: upright;
 }
 
+span.rotate {
+  height: fit-content;
+}
+
 h1, h2 {
   color: white;
   padding: 0;
   border-left: 3px solid white;
   height: fit-content;
-  margin-top: 285px;
 }
 
 .welcome-outline {
@@ -72,19 +83,88 @@ nav ul {
   display: flex;
 }
 
+.post-title {
+  color: white;
+  font-size: 3rem;
+  border-left: none;
+  border-bottom: 2px solid white;
+  width: fit-content;
+}
+
+#posts-city-name {
+  margin-top: 50px;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.post-container-div {
+  margin-left: 50px;
+}
+
+.post-content-div {
+  height: 250px;
+}
+
+.post-content-div::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.post-content-div::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.post-content-div::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
+.comment-container {
+  overflow: hidden;
+  width: 50%;
+}
+
+.comment-container::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.comment-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.comment-container::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
 form {
   width: 450px;
   margin-left: 50px;
 }
 
 .form-cont {
-  position: absolute;
-  top: 450px;
-  left: 450px;
+  height: fit-content;
+  margin-top: 100px;
+  margin-right: 500px;
 }
 
 input {
   border-bottom: #333f58;
+}
+
+input#id_password {
+  color: white;
+}
+
+input#id_email {
+  color: white;
+}
+
+input#id_password1 {
+  color: white;
+}
+
+input#id_password2 {
+  color: white;
 }
 
 label {
@@ -111,33 +191,91 @@ label {
   display: none;
 }
 
-.about-cont {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-left: 200px;
-  margin-top: 284px;
+input#id_username {
+  background-color: transparent;
 }
 
-.card {
+.red-text {
+  color: white !important;
+  height: 150px;
+  position: absolute;
+  margin-left: 252px;
+  margin-top: 34px;
+  font-size: x-large;
+}
+
+.delete-btn {
+  background-color: rgba(249, 157, 172, 0.461);
+}
+
+.parent-card {
+  display: inline-flex;
+  flex-wrap: wrap;
+  height: 945px;
+  margin-top: 27px;
+}
+
+.parent-card .card1 {
+  width: 425px;
+  max-height: 454px;
+  margin: 5px;
+}
+
+.parent-card .card {
   width: 200px;
   height: 300px;
   justify-content: space-evenly;
+  background-color: transparent;
+}
+
+.card-image {
+  height: 100%;
+  display: flex;
 }
 
 .row {
-  height: fit-content;
-  align-self: start;
+  height: 444px;
 }
 
 .about-text {
   font-size: 12px;
 }
 
+.card-content {
+  max-height: 200px;
+}
+
+.col {
+  max-height: 444px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 65%;
+  position: absolute;
+  top: 30%;
+  right: 10%;
+}
+
+input#id_name {
+  color: white;
+}
+
+input#id_current_city {
+  color: white;
+}
+
+textarea#id_past_cities {
+  color: white;
+}
+
 .profile-cont {
   position: absolute;
-  top: 570px;
-  left: 500px;
+  top: 10%;
+  left: 25%;
 }
 
 .profile-cont p {
@@ -146,6 +284,207 @@ label {
 
 .profile-cont .btn {
   margin-top: 25px;
+}
+
+.posts-div {
+  height: 225px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.posts-div .card {
+  width: 100%;
+  height: 200px;
+}
+
+.posts-div .card-content {
+  display: flex;
+}
+
+.posts-div .card-content div:nth-of-type(1) {
+  width: 23%;
+  border-right: 1px solid white;
+  margin-right: 10px;
+}
+
+.posts-div .card-content div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+}
+
+.posts-div::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.posts-div::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.posts-div::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
+.comments-div {
+  height: 225px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.comments-div::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.comments-div::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.comments-div::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
+.comments-div .card-content {
+  display: flex;
+}
+
+.comments-div .card-content div:nth-of-type(1) {
+  width: 23%;
+  border-right: 1px solid white;
+  margin-right: 10px;
+}
+
+.comments-div .card-content div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  width: 60%;
+}
+
+.comments-div .card-content div:nth-of-type(3) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comments-div .card {
+  width: 100%;
+}
+
+#add-post {
+  margin-top: 38px;
+}
+
+input#id_title {
+  color: white;
+}
+
+textarea#id_content {
+  color: white;
+}
+
+textarea {
+  width: 100%;
+  height: 10rem;
+  background-color: transparent;
+}
+
+.modal {
+  background-image: linear-gradient(45deg, #292831, #4a7a96, #ee8695);
+}
+
+.modal .modal-footer {
+  background-color: transparent;
+}
+
+.modal-content h4 {
+  color: white;
+}
+
+ul.errorlist.nonfield {
+  color: white !important;
+  display: flex !important;
+  font-size: x-large;
+}
+
+div.city-img {
+  height: 400px;
+  margin-top: 41px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+div.city-img .btn, div.city-img .btn-large, div.city-img .btn-small {
+  background-color: transparent;
+  margin-left: 0 !important;
+  margin-top: 10px;
+}
+
+.city-cont {
+  display: block;
+  width: 82%;
+  margin-top: 42px;
+}
+
+.city-cont p {
+  margin-bottom: 25px;
+}
+
+.city-cont a {
+  color: white;
+  font-size: x-large;
+}
+
+.city-cont .card {
+  display: block;
+  height: fit-content;
+  margin-left: 10px;
+  background-color: transparent;
+}
+
+.city-cont .card a {
+  display: block;
+}
+
+a {
+  color: white;
+  font-size: x-large;
+}
+
+.city-scroll {
+  height: 200px;
+  overflow: scroll;
+}
+
+.city-scroll::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.city-scroll::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
+.truncate {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  white-space: pre-wrap;
+}
+
+.truncate-comment {
+  display: -webkit-box;
+  white-space: pre-wrap;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
 }
 
 footer {

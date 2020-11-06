@@ -20,10 +20,13 @@ body {
 // --------------------------------------- Gradient Vibe
     background-image: 
     linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 html {
     font-family: 'Courier New', Courier, monospace;
+    min-height: 100%;
 }
 
 main {
@@ -36,13 +39,21 @@ main {
 
 }
 
+::placeholder {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+}
+
 // --------------------------------------- Titles
 .rotate {
     writing-mode: vertical-lr;
     transform:scale(1);
     width:60px;
-    // margin-right:50px;
     text-orientation: upright;
+}
+
+span.rotate {
+    height: fit-content;
 }
 
 h1, h2 {
@@ -50,7 +61,7 @@ h1, h2 {
     padding: 0;
     border-left: 3px solid white;
     height: fit-content;
-    margin-top: 285px;
+
 }
 
 .welcome-outline {
@@ -87,6 +98,57 @@ nav ul {
     display: flex;
 }
 
+
+// --------------------------------------- Posts Detail
+.post-title {
+    color: white;
+    font-size: 3rem;
+    border-left: none;
+    border-bottom: 2px solid white;
+    width: fit-content;
+    // margin-top: 0%;
+}
+
+#posts-city-name {
+    margin-top: 50px;
+    font-size: 3rem;
+    margin: 0;
+}
+
+.post-container-div {
+    margin-left: 50px;
+}
+
+.post-content-div {
+    height: 250px;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
+.comment-container {
+    overflow: hidden;
+    width: 50%;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
+
 // --------------------------------------- Forms
 form {
     width: 450px;
@@ -94,13 +156,29 @@ form {
 }
 
 .form-cont {
-    position: absolute;
-    top: 450px;
-    left: 450px;
+    height: fit-content;
+    margin-top: 100px;
+    margin-right: 500px;
 }
 
 input {
     border-bottom: $dark-blue;
+}
+
+input#id_password {
+    color: white;
+}
+
+input#id_email {
+    color: white;
+}
+
+input#id_password1 {
+    color: white;
+}
+
+input#id_password2{
+    color: white;
 }
 
 label {
@@ -127,36 +205,96 @@ label {
     display: none;
 }
 
-// --------------------------------------- About Card
-.about-cont {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-left: 200px;
-    margin-top: 284px;
-    
+input#id_username {
+    background-color: transparent;
 }
 
-.card {
-    width: 200px;
-    height: 300px;
-    justify-content: space-evenly;
+.red-text {
+    color: white !important;
+    height: 150px;
+    position: absolute;
+    margin-left: 252px;
+    margin-top: 34px;
+    font-size: x-large;
+}
+
+.delete-btn {
+    background-color: rgba(249, 157, 172, 0.461);
+}
+
+
+
+// --------------------------------------- About Cards
+.parent-card {
+    display: inline-flex;
+    flex-wrap: wrap;
+    height: 945px;
+    margin-top: 27px;
+    
+    .card1 {
+        width: 425px;
+        max-height: 454px;
+        margin: 5px;
+    }
+    
+    .card {
+        width: 200px;
+        height: 300px;
+        justify-content: space-evenly;
+        background-color: transparent;
+    }
+}
+
+.card-image {
+    height: 100%;
+    display: flex;
 }
 
 .row {
-    height: fit-content;
-    align-self: start;
+    height: 444px;
 }
 
 .about-text {
     font-size: 12px;
 }
 
+.card-content {
+    max-height: 200px;
+}
+
+.col {
+    max-height: 444px;
+}
+
 // --------------------------------------- Profile
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 65%;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+}
+
+input#id_name {
+    color: white;
+}
+
+input#id_current_city {
+    color: white;
+}
+
+textarea#id_past_cities {
+    color: white;
+}
+
 .profile-cont {
     position: absolute;
-    top: 570px;
-    left: 500px;
+    top: 10%;
+    left: 25%;
 
     p {
         font-size: x-large;
@@ -165,6 +303,211 @@ label {
     .btn {
         margin-top: 25px;
     }
+}
+
+.posts-div {
+    height: 225px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    .card {
+        width: 100%;
+        height: 200px;
+    }
+    .card-content {
+        display: flex;
+        
+        div:nth-of-type(1) {
+            width: 23%;
+            border-right: 1px solid white;
+            margin-right: 10px;
+        }
+        div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+        }
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
+
+.comments-div {
+    height: 225px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+    .card-content {
+        display: flex;
+        
+        div:nth-of-type(1) {
+            width: 23%;
+            border-right: 1px solid white;
+            margin-right: 10px;
+        }
+        div:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+            width: 60%;
+        }
+        div:nth-of-type(3) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .card {
+        width: 100%;
+    }
+}
+// --------------------------------------- Post
+#add-post {
+    margin-top: 38px;
+}
+
+input#id_title {
+    color: white;
+}
+
+textarea#id_content {
+    color: white;
+}
+
+
+textarea {
+    width: 100%;
+    height: 10rem;
+    background-color: transparent;
+}
+
+// --------------------------------------- Modals
+.modal {
+    background-image: 
+    linear-gradient(45deg, $wash-black, $light-blue, $orange-pink);
+    
+}
+
+.modal .modal-footer {
+    background-color: transparent
+}
+
+.modal-content {
+    h4 {
+        color: white;
+    }
+}
+
+
+// --------------------------------------- Error
+ul.errorlist.nonfield {
+    color: white !important;
+    display: flex !important;
+    font-size: x-large;
+}
+
+// --------------------------------------- Cities
+div.city-img {
+    height: 400px;
+    margin-top: 41px;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    .btn, .btn-large, .btn-small {
+        background-color: transparent;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+}
+
+.city-link :hover{
+
+}
+
+.city-cont {
+    display: block;
+    width: 82%;
+    margin-top: 42px;
+    
+    p {
+        margin-bottom: 25px;
+    }
+    
+    a {
+        color: white;
+        font-size: x-large;
+    }
+
+    .card {
+        display: block;
+        height: fit-content;
+        margin-left: 10px;
+        background-color: transparent;
+    
+        a {
+            display: block;
+        }
+
+    }
+}
+a {
+    color: white;
+    font-size: x-large;
+}
+
+.city-scroll {
+    height: 200px;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
+
+
+// --------------------------------------- Truncate
+.truncate {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+}
+
+.truncate-comment {
+    display: -webkit-box;
+    white-space: pre-wrap;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 // --------------------------------------- Footer
@@ -176,6 +519,8 @@ footer {
 .page-footer {
     background-color: transparent;
 }
+
+
 
 
 // --------------------------------------- Tablet & Under
