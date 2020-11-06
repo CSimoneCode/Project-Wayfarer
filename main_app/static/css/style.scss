@@ -106,9 +106,11 @@ nav ul {
     border-left: none;
     border-bottom: 2px solid white;
     width: fit-content;
+    // margin-top: 0%;
 }
 
 #posts-city-name {
+    margin-top: 50px;
     font-size: 3rem;
     margin: 0;
 }
@@ -163,6 +165,22 @@ input {
     border-bottom: $dark-blue;
 }
 
+input#id_password {
+    color: white;
+}
+
+input#id_email {
+    color: white;
+}
+
+input#id_password1 {
+    color: white;
+}
+
+input#id_password2{
+    color: white;
+}
+
 label {
     color: white;
     margin-top: 25px;
@@ -187,9 +205,17 @@ label {
     display: none;
 }
 
+input#id_username {
+    background-color: transparent;
+}
+
 .red-text {
     color: white !important;
     height: 150px;
+    position: absolute;
+    margin-left: 252px;
+    margin-top: 34px;
+    font-size: x-large;
 }
 
 .delete-btn {
@@ -251,6 +277,18 @@ label {
     position: absolute;
     top: 30%;
     right: 10%;
+}
+
+input#id_name {
+    color: white;
+}
+
+input#id_current_city {
+    color: white;
+}
+
+textarea#id_past_cities {
+    color: white;
 }
 
 .profile-cont {
@@ -400,6 +438,10 @@ div.city-img {
         margin-left: 0 !important;
         margin-top: 10px;
     }
+}
+
+.city-link :hover{
+
 }
 
 .city-cont {
