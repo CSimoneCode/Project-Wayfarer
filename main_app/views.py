@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Posts, City, Comment
@@ -8,7 +7,6 @@ from .forms import PostsForm, ProfileForm, SignupForm, CommentForm
 from django.conf import settings
 from django.core.mail import send_mail
 from pyuploadcare.dj.models import ImageField
-import datetime
 
 
 # --------------------------- STATIC PAGES
@@ -23,15 +21,12 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    # found_user = User.objects.filter(id=request.user.id)
-    # profile = Profile.objects.filter(user=request.user)[0]   
     posts = Posts.objects.filter(author=request.user.id)
-    found_user = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
     comments = Comment.objects.filter(author=request.user.id)
+
     context = {
         'profile': profile,
-        'found_user': found_user,
         'posts': posts,
         'comments': comments,
         'num_comments': len(comments),
@@ -60,7 +55,6 @@ def add_profile(request):
         }
         return render(request, 'profiles/add.html', context)
 
-##update profile currently incomplete
 
 @login_required
 def update_profile(request):
@@ -151,7 +145,6 @@ def cities_index(request):
 def cities_detail(request, city_id):
     found_city = City.objects.get(id=city_id)
     posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
-    # time_diff = datetime.datetime.now()
     context = {
         'city': found_city,
         'posts': posts
