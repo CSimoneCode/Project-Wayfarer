@@ -16,29 +16,41 @@
 </div>
 
 <div class="profile-content">
-  <div class="posts-div">
-    <p class="white-text">My Posts | {{ num_posts }}</p>
-    {% for post in posts %}
-      <div class="card post-card transparent">
-        <div class="card-content">
-        <div>
-          <span class="card-title"><a href="{% url 'posts_detail' post.id %}">{{ post.title }}</a></span>
-          <p>{{ post.author }}</p>
-          <p>{{ post.post_date }}</p>
-        </div>
-        <div>
-          <p class="truncate">{{ post.content }}</p>
-        </div>
-        </div>
-      </div>
 
-    {% endfor %}
+  <div class="row" id="tabs-row">
+    <div class="col s12">
+      <ul class="tabs transparent">
+        <li class="tab col s3"><a href="#posts-tab">My Posts | {{ num_posts }}</a></li>
+        <li class="tab col s3"><a href="#comments-tab">My Comments | {{ num_comments }}</a></li>
+      </ul>
+    </div>
   </div>
+  
+  <div class="col s12" id="posts-tab">
+    <div class="posts-div">
+      {% comment %} <p class="white-text">My Posts | {{ num_posts }}</p> {% endcomment %}
+      {% for post in posts %}
+        <div class="card post-card transparent">
+        <a href="{% url 'posts_detail' post.id %}">
+          <div class="card-content">
+          <div>
+            <span class="card-title">{{ post.title }}</span>
+            <p>{{ post.author }}</p>
+            <p>{{ post.post_date }}</p>
+          </div>
+          <div>
+            <p class="truncate">{{ post.content }}</p>
+          </div>
+          </div>
+          </a>
+        </div>
 
-
-
+      {% endfor %}
+    </div>
+  </div>
+<div class="col s12" id="comments-tab">
   <div class="comments-div">
-    <p class="white-text">My Comments | {{ num_comments }}</p>
+    {% comment %} <p class="white-text">My Comments | {{ num_comments }}</p> {% endcomment %}
     {% for comment in comments %}
       <div class="card transparent">
         <div class="card-content">
@@ -53,6 +65,7 @@
         </div>
       </div>
   {% endfor %}
+</div>
 </div>
  {% comment %} <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p> {% endcomment %}
 
