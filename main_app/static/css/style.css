@@ -163,13 +163,13 @@ label {
   margin-top: 27px;
 }
 
-.card1 {
+.parent-card .card1 {
   width: 425px;
   max-height: 454px;
   margin: 5px;
 }
 
-.card {
+.parent-card .card {
   width: 200px;
   height: 300px;
   -webkit-box-pack: space-evenly;
@@ -339,6 +339,19 @@ ul.errorlist.nonfield {
   font-size: x-large;
 }
 
+div.city-img {
+  height: 400px;
+  margin-top: 41px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+div.city-img .btn, div.city-img .btn-large, div.city-img .btn-small {
+  background-color: transparent;
+  margin-left: 0 !important;
+  margin-top: 10px;
+}
+
 .city-cont {
   display: block;
   width: 82%;
@@ -346,7 +359,7 @@ ul.errorlist.nonfield {
 }
 
 .city-cont p {
-  margin-bottom: 75px;
+  margin-bottom: 25px;
 }
 
 .city-cont a {
