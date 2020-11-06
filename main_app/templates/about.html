@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %} | About{% endblock  %}
+{% load static %}
+{% block title %} | About Us{% endblock  %}
 {% block content %}
 
 
 
 <span  class="rotate">
-    <h1>About</h1>
+    <h1>About Us</h1>
 </span>
 
 <div class="parent-card">
@@ -14,21 +15,21 @@
             <div class="col s6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="https://picsum.photos/seed/picsum/200/300">
+                        <img src="{% static 'images/jia_pic.png' %}">
                     </div>
-                        <span class="card-title">Jia Cooper</span>
                     <div class="card-content">
-                        <p class="about-text">I am a very simple card. I am good at containing small bits of information.</p>
+                        <span class="card-title">Jia Cooper</span>
+                        <p class="about-text">I am a very simple girl. I am good at conveying small bits of information.</p>
                     </div>
                 </div>
             </div>
             <div class="col s6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="https://picsum.photos/seed/picsum/200/300">
+                        <img src="{% static 'images/ok.jpg' %}">
                     </div>
-                        <span class="card-title">Elias Baez</span>
                     <div class="card-content">
+                        <span class="card-title">Elias Baez</span>
                         <p class="about-text">I am a very simple card. I am good at containing small bits of information.</p>
                     </div>
                 </div>
@@ -40,10 +41,10 @@
             <div class="col s6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="https://picsum.photos/seed/picsum/200/300">
+                        <img src="{% static 'images/puppycat.jpg' %}">
                     </div>
-                        <span class="card-title">Simone Poe</span>
                     <div class="card-content">
+                        <span class="card-title">Simone Poe</span>
                         <p class="about-text">I am a very simple card. I am good at containing small bits of information.</p>
                     </div>
                 </div>
@@ -51,10 +52,10 @@
             <div class="col s6">
                 <div class="card">
                     <div class="card-image">
-                        <img src="https://picsum.photos/seed/picsum/200/300">
+                        <img src="{% static 'images/DSC_7857.JPG' %}">
                     </div>
-                        <span class="card-title">Chris Zalapa</span>
                     <div class="card-content">
+                        <span class="card-title">Chris Zalapa</span>
                         <p class="about-text">I am a very simple card. I am good at containing small bits of information.</p>
                     </div>
                 </div>

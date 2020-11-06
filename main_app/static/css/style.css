@@ -43,6 +43,26 @@ main {
   display: flex;
 }
 
+::-webkit-input-placeholder {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
+
+:-ms-input-placeholder {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
+
+::-ms-input-placeholder {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
+
+::placeholder {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+}
+
 .rotate {
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
@@ -111,7 +131,7 @@ nav ul {
   color: white;
   font-size: 3rem;
   border-left: none;
-  border-bottom: 3px solid white;
+  border-bottom: 2px solid white;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -139,6 +159,24 @@ nav ul {
 }
 
 .post-content-div::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
+.comment-container {
+  overflow: hidden;
+  width: 50%;
+}
+
+.comment-container::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.comment-container::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.comment-container::-webkit-scrollbar-thumb {
   background-color: #4a7a96;
   border-radius: 5px;
 }
@@ -189,6 +227,10 @@ label {
   height: 150px;
 }
 
+.delete-btn {
+  background-color: rgba(249, 157, 172, 0.461);
+}
+
 .parent-card {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -211,6 +253,14 @@ label {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  background-color: transparent;
+}
+
+.card-image {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .row {
@@ -328,6 +378,19 @@ label {
   width: 100%;
 }
 
+.comments-div::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.comments-div::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.comments-div::-webkit-scrollbar-thumb {
+  background-color: #4a7a96;
+  border-radius: 5px;
+}
+
 .comments-div .card-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -347,24 +410,24 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 60%;
+}
+
+.comments-div .card-content div:nth-of-type(3) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .comments-div .card {
   width: 100%;
-  height: 200px;
-}
-
-.comments-div::-webkit-scrollbar {
-  background-color: transparent;
-}
-
-.comments-div::-webkit-scrollbar-corner {
-  background-color: transparent;
-}
-
-.comments-div::-webkit-scrollbar-thumb {
-  background-color: #4a7a96;
-  border-radius: 5px;
 }
 
 ul.errorlist.nonfield {
