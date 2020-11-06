@@ -11,7 +11,7 @@
   <h2 class="post-title">{{ post.title }}</h2>
   <div class="post-content posts-div">
     <div>
-      <p>Author: {{ post.author.user }} | {{ post.post_date }}</p>
+      <p>Author | {{ post.author.user }} | {{ post.post_date }}</p>
     </div>
     <div class="post-content-div card transparent">
       <p>{{ post.content }}</p>
@@ -19,15 +19,26 @@
   </div>
 
 
+<span class="white-text">Comments | {{ num_comments }}</span>
+<span class="right">{% if user.is_authenticated %}
+    <a href="{% url 'add_comment' post.city.id post.id %}" class="btn">Add Comment</a>
+    {% endif %}
+</span>
   <div class="comments-section comments-div">
     {% for comment in comments %}
       <div class="card transparent">
         <div class="card-content">
-          <span class="card-title">{{ comment.title }}</span>
-          <p>{{ comment.author }} - {{ comment.post_date }}</p>
-          <p>{{ comment.content }}</p>
+          <div>
+            <span class="card-title white-text">{{ comment.title }}</span>
+            <p>{{ comment.author }}</p>
+            <p>{{ comment.post_date }}</p>
+          </div>
+          <div class="comment-container">
+            <p>{{ comment.content }}</p>
+          </div>
           {% if request.user.id == comment.author.id %}
-            <a class="waves-effect waves-light btn modal-trigger pink" href="#modal1">Delete Comment</a>
+          <div>
+            <a class="waves-effect waves-light btn modal-trigger delete-btn" href="#modal1">Delete Comment</a>
             <div class="modal" id="modal1">
               <div class="modal-content">
                 <h4>Are you sure you want to delete this comment?</h4>
@@ -41,18 +52,16 @@
               </div>
             </div>
             <a href="{% url 'update_comment' post.city.id post.id comment.id %}" class="btn">Edit Comment</a>
+          </div>
           {% endif %}
         </div>
       </div>
     {% endfor %}
-    {% if user.is_authenticated %}
-    <a href="{% url 'add_comment' post.city.id post.id %}" class="btn">Add Comment</a>
-    {% endif %}
-    <p>Total comments: {{ num_comments }}</p>
+
   </div>
 
   {% if post.author.id == request.user.id %}
-  <a class="waves-effect waves-light btn modal-trigger pink" href="#modal2">Delete Post</a>
+  <a class="waves-effect waves-light btn modal-trigger delete-btn" href="#modal2">Delete Post</a>
   <div class="modal" id="modal2">
     <div class="modal-content">
       <h4>Are you sure you want to delete this post?</h4>
