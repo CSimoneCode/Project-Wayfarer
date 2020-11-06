@@ -79,6 +79,11 @@ span.rotate {
   height: fit-content;
 }
 
+.about,
+.welcome {
+  font-size: 4rem;
+}
+
 h1, h2 {
   color: white;
   padding: 0;
@@ -86,6 +91,7 @@ h1, h2 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  font-size: 3rem;
 }
 
 .welcome-outline {
@@ -145,10 +151,15 @@ nav ul {
 
 .post-container-div {
   margin-left: 50px;
+  width: 100%;
+}
+
+.post-heading {
+  margin-bottom: 18px;
 }
 
 .post-content-div {
-  height: 250px;
+  height: 350px;
 }
 
 .post-content-div::-webkit-scrollbar {
@@ -341,10 +352,8 @@ textarea#id_past_cities {
   position: absolute;
   top: 10%;
   left: 25%;
-}
-
-.profile-cont p {
-  font-size: x-large;
+  max-width: 65% p;
+  max-width-font-size: x-large;
 }
 
 .profile-cont .btn {
@@ -352,7 +361,6 @@ textarea#id_past_cities {
 }
 
 .posts-div {
-  height: 100%;
   overflow: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -388,6 +396,7 @@ textarea#id_past_cities {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 60%;
 }
 
 .posts-div::-webkit-scrollbar {
@@ -401,6 +410,11 @@ textarea#id_past_cities {
 .posts-div::-webkit-scrollbar-thumb {
   background-color: #4a7a96;
   border-radius: 5px;
+}
+
+.comments-tab-div,
+.posts-tabs-div {
+  height: 100%;
 }
 
 .comments-div {
@@ -433,6 +447,9 @@ textarea#id_past_cities {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .comments-div .card-content div:nth-of-type(1) {
@@ -480,6 +497,22 @@ textarea#id_past_cities {
 
 .tab a {
   color: white !important;
+}
+
+.update-btn {
+  z-index: 5;
+}
+
+#comment-modal {
+  width: 100%;
+}
+
+#profile-comments {
+  width: 75%;
+}
+
+.profile-comment-title {
+  border-bottom: 1px solid white;
 }
 
 #add-post {

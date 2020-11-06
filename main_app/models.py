@@ -10,7 +10,7 @@ class Profile(models.Model):
     join_date = models.DateField(auto_now_add=True)
     past_cities = models.TextField(blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    pic = models.ImageField(upload_to="main_app/static/images", null=True)
+    # pic = models.ImageField(upload_to="main_app/static/images", null=True)
 
     def __str__(self):
         return self.name

@@ -56,12 +56,18 @@ span.rotate {
     height: fit-content;
 }
 
+
+.about,
+.welcome {
+    font-size: 4rem;
+}
+
 h1, h2 {
     color: white;
     padding: 0;
     border-left: 3px solid white;
     height: fit-content;
-
+    font-size: 3rem;
 }
 
 .welcome-outline {
@@ -117,10 +123,15 @@ nav ul {
 
 .post-container-div {
     margin-left: 50px;
+    width: 100%;
+}
+
+.post-heading {
+    margin-bottom: 18px;
 }
 
 .post-content-div {
-    height: 250px;
+    height: 350px;
     &::-webkit-scrollbar {
         background-color: transparent;
     }
@@ -296,6 +307,7 @@ textarea#id_past_cities {
     position: absolute;
     top: 10%;
     left: 25%;
+    max-width: 65%
 
     p {
         font-size: x-large;
@@ -307,8 +319,6 @@ textarea#id_past_cities {
 }
 
 .posts-div {
-    // height: 225px;
-    height: 100%;
     overflow: scroll;
     display: flex;
     flex-direction: column;
@@ -329,6 +339,7 @@ textarea#id_past_cities {
         div:nth-of-type(2) {
             display: flex;
             align-items: center;
+            width: 60%;
         }
     }
     &::-webkit-scrollbar {
@@ -343,6 +354,10 @@ textarea#id_past_cities {
     }
 }
 
+.comments-tab-div,
+.posts-tabs-div {
+    height: 100%;
+}
 
 .comments-div {
     height: 225px;
@@ -362,6 +377,7 @@ textarea#id_past_cities {
     }
     .card-content {
         display: flex;
+        justify-content: space-between;
         
         div:nth-of-type(1) {
             width: 23%;
@@ -396,6 +412,23 @@ textarea#id_past_cities {
     a {
         color: white !important;
     }
+}
+
+.update-btn {
+    z-index: 5;
+}
+
+
+#comment-modal {
+    width: 100%;
+}
+
+#profile-comments {
+    width: 75%;
+}
+
+.profile-comment-title {
+    border-bottom: 1px solid white;
 }
 
 // --------------------------------------- Post

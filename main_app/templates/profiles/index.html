@@ -6,13 +6,11 @@
 
 
 <span class="rotate"><h2>{{ profile.name }}</h2></span>
-<a class="btn" href="{% url 'update_profile' %}">Update Profile</a>
+<a class="btn update-btn" href="{% url 'update_profile' %}">Update Profile</a>
 <div class="profile-cont">
-  <p >Username | {{ request.user }} <small> | Joined | {{ profile.join_date }}</small></p>
-  <p >Current City | {{ profile.current_city }}</p>
-  {% if profile.past_cites %}
-    <p >Past Cities | {{ profile.past_cities }}</p>
-  {% endif %}
+  <p>Username | {{ profile.user }} <small> | Joined | {{ profile.join_date }}</small></p>
+  <p>Current City | {{ profile.current_city }}</p>
+  <p>Past Cities | {{ profile.past_cities }}</p>
 </div>
 
 <div class="profile-content">
@@ -27,21 +25,20 @@
   </div>
   
   <div class="col s12" id="posts-tab">
-    <div class="posts-div">
-      {% comment %} <p class="white-text">My Posts | {{ num_posts }}</p> {% endcomment %}
+    <div class="posts-div posts-tabs-div">
       {% for post in posts %}
         <div class="card post-card transparent">
-        <a href="{% url 'posts_detail' post.id %}">
-          <div class="card-content">
-          <div>
-            <span class="card-title">{{ post.title }}</span>
-            <p>{{ post.author }}</p>
-            <p>{{ post.post_date }}</p>
-          </div>
-          <div>
-            <p class="truncate">{{ post.content }}</p>
-          </div>
-          </div>
+          <a href="{% url 'posts_detail' post.id %}">
+            <div class="card-content">
+            <div>
+              <span class="card-title">{{ post.title }}</span>
+              <p>{{ post.author }}</p>
+              <p>{{ post.post_date }}</p>
+            </div>
+            <div>
+              <p class="truncate">{{ post.content }}</p>
+            </div>
+            </div>
           </a>
         </div>
 
@@ -49,23 +46,23 @@
     </div>
   </div>
 <div class="col s12" id="comments-tab">
-  <div class="comments-div">
-    {% comment %} <p class="white-text">My Comments | {{ num_comments }}</p> {% endcomment %}
+  <div class="comments-div comments-tab-div">
     {% for comment in comments %}
       <div class="card transparent">
         <div class="card-content">
           <div>
+            <a class="profile-comment-title" href="{% url 'posts_detail' comment.parent_post.id %}"><small>{{ comment.parent_post.title }}</small></a>
             <span class="card-title white-text">{{ comment.title }}</span>
             <p>{{ comment.parent_post.city }}</p>
             <p>{{ comment.post_date }}</p>
           </div>
-          <div>
-            <p class="truncate-comment">{{ comment.content }}</p>
+          <div id="profile-comments">
+            <p>{{ comment.content }}</p>
           </div>
         </div>
       </div>
   {% endfor %}
-</div>
+  </div>
 </div>
  {% comment %} <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p> {% endcomment %}
 

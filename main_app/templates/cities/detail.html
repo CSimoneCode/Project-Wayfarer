@@ -7,8 +7,8 @@
 </span>
 
 <div class="city-img">
-    <img src="https://picsum.photos/seed/picsum/300/400">
-    <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+    <img src="https://loremflickr.com/320/240/architecture/">
+    <a href="{% url 'add_post' city.id %}" class="btn"><i class="material-icons">add</i></a>
 </div>
 <div class="city-cont">
     <p>{{ city.country }}</p>
@@ -16,15 +16,20 @@
     <p>{{ city.language }}</p>
     <p>{{ city.blurb }}</p>
 
-
-<div class="city-scroll">
-<p class="white-text">Posts |</p>
+  <div class="row" id="tabs-row">
+    <div class="col s12">
+      <ul class="tabs transparent">
+        <li class="tab col s3"><a href="#city-posts-tab">Posts | </a></li>
+      </ul>
+    </div>
+  </div>
+<div class="city-scroll col s12" id="city-posts-tab">
     {% for post in posts %}
-    <div class="card transparent"><!--Do posts as cards?-->
+    <div class="card transparent">
         <a href="{% url 'posts_detail' post.id %}">
             {{ post.title }}|
         </a>
-        <span> - {{ post.author.user }} - {{ post.post_date }}</span>
+        <span> {{ post.author.user }} | {{ post.post_date }}</span>
     </div>
     {% endfor %}
     </div>
