@@ -28,21 +28,6 @@ main {
   display: flex;
 }
 
-::-webkit-input-placeholder {
-  font-family: 'Courier New', Courier, monospace;
-  padding: 5px;
-}
-
-:-ms-input-placeholder {
-  font-family: 'Courier New', Courier, monospace;
-  padding: 5px;
-}
-
-::-ms-input-placeholder {
-  font-family: 'Courier New', Courier, monospace;
-  padding: 5px;
-}
-
 ::placeholder {
   font-family: 'Courier New', Courier, monospace;
   padding: 5px;
@@ -103,12 +88,11 @@ nav ul {
   font-size: 3rem;
   border-left: none;
   border-bottom: 2px solid white;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
 }
 
 #posts-city-name {
+  margin-top: 50px;
   font-size: 3rem;
   margin: 0;
 }
@@ -167,6 +151,22 @@ input {
   border-bottom: #333f58;
 }
 
+input#id_password {
+  color: white;
+}
+
+input#id_email {
+  color: white;
+}
+
+input#id_password1 {
+  color: white;
+}
+
+input#id_password2 {
+  color: white;
+}
+
 label {
   color: white;
   margin-top: 25px;
@@ -191,9 +191,17 @@ label {
   display: none;
 }
 
+input#id_username {
+  background-color: transparent;
+}
+
 .red-text {
   color: white !important;
   height: 150px;
+  position: absolute;
+  margin-left: 252px;
+  margin-top: 34px;
+  font-size: x-large;
 }
 
 .delete-btn {
@@ -216,16 +224,12 @@ label {
 .parent-card .card {
   width: 200px;
   height: 300px;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
   background-color: transparent;
 }
 
 .card-image {
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -254,6 +258,18 @@ label {
   position: absolute;
   top: 30%;
   right: 10%;
+}
+
+input#id_name {
+  color: white;
+}
+
+input#id_current_city {
+  color: white;
+}
+
+textarea#id_past_cities {
+  color: white;
 }
 
 .profile-cont {
@@ -344,23 +360,14 @@ label {
 
 .comments-div .card-content div:nth-of-type(2) {
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   width: 60%;
 }
 
 .comments-div .card-content div:nth-of-type(3) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comments-div .card {
