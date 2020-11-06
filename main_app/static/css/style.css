@@ -26,6 +26,7 @@ body {
 html {
   font-family: 'Courier New', Courier, monospace;
   min-height: 100%;
+  text-shadow: -1px 1px 1px #4a7a96;
 }
 
 main {
@@ -117,10 +118,19 @@ nav ul {
   display: flex;
 }
 
+nav ul a {
+  font-size: 1.1rem !important;
+  text-shadow: -1px 1px 2px #333f58;
+}
+
 .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.brand-logo {
+  font-size: 2.1rem !important;
 }
 
 .nav-wrapper {
@@ -420,7 +430,7 @@ textarea#id_past_cities {
   border-radius: 5px;
 }
 
-.comments-tab-div,
+#comments-tab-div,
 .posts-tabs-div {
   height: 100%;
 }
@@ -511,6 +521,11 @@ textarea#id_past_cities {
   z-index: 5;
 }
 
+#posts-tab,
+#comments-tab {
+  height: 100%;
+}
+
 #comment-modal {
   width: 100%;
 }
@@ -539,6 +554,14 @@ textarea {
   width: 100%;
   height: 10rem;
   background-color: transparent;
+}
+
+.wide-tab {
+  width: 200px;
+}
+
+.wide-tab a {
+  width: 150px !important;
 }
 
 .add-comment-form {

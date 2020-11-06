@@ -27,6 +27,7 @@ body {
 html {
     font-family: 'Courier New', Courier, monospace;
     min-height: 100%;
+    text-shadow: -1px 1px 1px $light-blue;
 }
 
 main {
@@ -62,6 +63,7 @@ span.rotate {
     font-size: 4rem;
 }
 
+
 h1, h2 {
     color: white;
     padding: 0;
@@ -86,14 +88,23 @@ p {
 nav {
     box-shadow: none;
     background-color: transparent;
-}
 
-nav ul {
-    display: flex;
+    ul {
+        display: flex;
+
+        a {
+            font-size: 1.1rem !important;
+            text-shadow: -1px 1px 2px $dark-blue;
+        }
+    }
 }
 
 .logo {
     display: flex;
+}
+
+.brand-logo {
+    font-size: 2.1rem !important;
 }
 
 .nav-wrapper {
@@ -367,7 +378,7 @@ textarea#id_past_cities {
     }
 }
 
-.comments-tab-div,
+#comments-tab-div,
 .posts-tabs-div {
     height: 100%;
 }
@@ -431,6 +442,10 @@ textarea#id_past_cities {
     z-index: 5;
 }
 
+#posts-tab,
+#comments-tab {
+    height: 100%;
+}
 
 #comment-modal {
     width: 100%;
@@ -464,6 +479,13 @@ textarea {
     background-color: transparent;
 }
 
+.wide-tab {
+    width: 200px;
+
+    a {
+        width: 150px !important;
+    }
+}
 
 // --------------------------------------- Comments
 .add-comment-form {
@@ -588,6 +610,7 @@ footer {
 .page-footer {
     background-color: transparent;
 }
+
 
 
 
