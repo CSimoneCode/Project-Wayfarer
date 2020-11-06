@@ -176,6 +176,21 @@ ul.errorlist.nonfield {
   font-size: x-large;
 }
 
+.city-cont {
+  display: block;
+  width: 82%;
+  margin-top: 42px;
+}
+
+.city-cont p {
+  margin-bottom: 75px;
+}
+
+.city-cont a {
+  color: white;
+  font-size: x-large;
+}
+
 .truncate {
   display: -webkit-box;
   overflow: hidden;

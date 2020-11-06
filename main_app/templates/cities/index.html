@@ -6,10 +6,12 @@
     <h1>All Cities</h1>
 </span>
 
-    {% for city in cities %}
-    <a href="{% url 'cities_detail' city.id %}">
-        <p>{{ city.name }}, {{ city.country }}</p>
-    </a>
-    {% endfor %}
+<div class="city-cont">
+{% for city in cities %}
+    <p>
+        <a class="city-link" href="{% url 'cities_detail' city.id %}">{{ city.name }}, {{ city.country }}</a>
+    </p>
+{% endfor %}
+</div>
 {% endblock %}
     
