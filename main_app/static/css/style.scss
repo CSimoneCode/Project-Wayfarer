@@ -166,6 +166,8 @@ form {
     margin-left: 50px;
 }
 
+
+
 .form-cont {
     height: fit-content;
     margin-top: 100px;
@@ -246,6 +248,7 @@ input#id_username {
         width: 425px;
         max-height: 454px;
         margin: 5px;
+
     }
     
     .card {
@@ -253,12 +256,22 @@ input#id_username {
         height: 300px;
         justify-content: space-evenly;
         background-color: transparent;
+        // 
+        border-radius: 50% !important;
     }
+    img {
+        border-radius: 50% !important;
+        border: 3px solid white;
+    }
+    
 }
+
 
 .card-image {
     height: 100%;
     display: flex;
+    border-radius: 50% !important;
+    background-color: transparent;
 }
 
 .row {
@@ -451,6 +464,12 @@ textarea {
     background-color: transparent;
 }
 
+
+// --------------------------------------- Comments
+.add-comment-form {
+    width: 85%;
+    margin-right: 20%;
+}
 // --------------------------------------- Modals
 .modal {
     background-image: 

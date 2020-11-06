@@ -51,7 +51,7 @@
       <div class="card transparent">
         <div class="card-content">
           <div>
-            <a class="profile-comment-title" href="{% url 'posts_detail' comment.parent_post.id %}"><small>{{ comment.parent_post.title }}</small></a>
+            {% comment %} <a class="profile-comment-title" href="{% url 'posts_detail' comment.parent_post.id %}"><small>{{ comment.parent_post.title }}</small></a> {% endcomment %}
             <span class="card-title white-text">{{ comment.title }}</span>
             <p>{{ comment.parent_post.city }}</p>
             <p>{{ comment.post_date }}</p>

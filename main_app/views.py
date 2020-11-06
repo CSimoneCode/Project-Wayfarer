@@ -22,13 +22,11 @@ def about(request):
 @login_required
 def profile(request):
     posts = Posts.objects.filter(author=request.user.id)
-    # found_user = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
     comments = Comment.objects.filter(author=request.user.id)
 
     context = {
         'profile': profile,
-        # 'found_user': found_user,
         'posts': posts,
         'comments': comments,
         'num_comments': len(comments),
@@ -147,7 +145,6 @@ def cities_index(request):
 def cities_detail(request, city_id):
     found_city = City.objects.get(id=city_id)
     posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
-    # time_diff = datetime.datetime.now()
     context = {
         'city': found_city,
         'posts': posts

@@ -23,7 +23,7 @@
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
             <li><a href="{% url 'cities_index' %}">View Cities</a></li>
-            <li><a href="{% url 'profile' %}">My Page</a></li>
+            <li><a href="{% url 'profile' %}">{{ request.user.profile.name }}'s Page</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
           <li><a href="{% url 'login' %}">Log In</a></li>

@@ -13,7 +13,7 @@
 <h1>Add Comment</h1>
 <h2>{{ city.name }}</h2> {% endcomment %}
 
-<form method="post" action="{% url 'add_comment' city.id post.id %}">
+<form class="add-comment-form" method="post" action="{% url 'add_comment' city.id post.id %}">
   {% csrf_token %}
   {{ comment_form.as_p }}
   <input type="submit" class="btn" value="Add Comment">

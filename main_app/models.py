@@ -36,6 +36,8 @@ class Posts(models.Model):
     # hashtags = models.CharField() ### May need middleware for hashtag functionality - doing more research
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
+
+
     def __str__(self):
         return f'{self.author} made post {self.title} on {self.post_date}'
 

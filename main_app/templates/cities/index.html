@@ -9,7 +9,7 @@
 <div class="city-cont">
 {% for city in cities %}
     <p>
-        <a class="city-link" href="{% url 'cities_detail' city.id %}">{{ city.name }}, {{ city.country }}</a>
+        <a class="city-link" href="{% url 'cities_detail' city.id %}">{{ city.name }}, {{ city.country }}</a><span><small> Posts | {{ city.posts_set.count }}</small></span>
     </p>
 {% endfor %}
 </div>

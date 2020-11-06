@@ -9,7 +9,7 @@
 </span>
 
 <div class="form-cont">
-  <form method="post" action="{% url 'add_post' city.id %}">
+  <form id="add-post-form" method="post" action="{% url 'add_post' city.id %}">
     {% csrf_token %}
     {{ posts_form.as_p }}
     <input type="submit" class="btn" value="Add Post">
