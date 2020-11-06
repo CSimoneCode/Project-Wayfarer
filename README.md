@@ -1,29 +1,29 @@
 ![Alt text](main_app/static/images/Traveler.png?raw=true "Title")
 
-#Traveler
+# Traveler
 remember where we've been
 
 Built with Django.
 
-##What is Traveler?
+## What is Traveler?
 
 Traveler is a community where fellow travelers can see and discuss where they have been, in common or not. Styled via Sass and Materialize CSS, Traveler is as much a visual experience as it is an interpersonal one. Built in Django, navigation through Traveler is simple and secure, and our PostgreSQL databasing ensures that your data will persist. Never lose a memory again, with Traveler.
 
-##How does it work?
+## How does it work?
 
 Traveler is built in Django, styled by Sass and Materialize, and deployed in a Heroku environment. 
 
 UploadCare is the package handling images throughout the site.
 
-##Who made Traveler?
+## Who made Traveler?
 
 Traveler is a collaboration by Christopher Zalapa, Simone Poe, Jia Cooper, and Elias Baez.
 
-##Why is Traveler?
+## Why is Traveler?
 
 Why is lamp?
 
-###Wireframes & User Stories
+### Wireframes & User Stories
 
 ![Alt text](main_app/static/images/wireframe1.png?raw=true "Wireframe")
 
