@@ -142,5 +142,4 @@ EMAIL_HOST_PASSWORD = 'partyJESUS4lif3'
 
 # Pillow Image Uploader
 
-STATIC_ROOT = BASE_DIR / 'images'
-STATIC_URL = '/images/'
+STATIC_ROOT = BASE_DIR / 'static'
