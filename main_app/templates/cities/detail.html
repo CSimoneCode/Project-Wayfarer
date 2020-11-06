@@ -2,7 +2,11 @@
 {% block title %}{{ city.name }}{% endblock %}
 
 {% block content %}
-<h1>{{ city.name }}</h1>
+<span  class="rotate">
+    <h1>{{ city.name }}</h1>
+</span>
+
+<div class="city-cont">
     <p>{{ city.country }}</p>
     <p>{{ city.region }}</p>
     <p>{{ city.language }}</p>
@@ -15,5 +19,6 @@
     </div>
     {% endfor %}
     <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+</div>
 {% endblock %}
     
