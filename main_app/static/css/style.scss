@@ -93,6 +93,40 @@ nav ul {
     display: flex;
 }
 
+
+// --------------------------------------- Posts Detail
+.post-title {
+    color: white;
+    font-size: 3rem;
+    border-left: none;
+    border-bottom: 3px solid white;
+    width: fit-content;
+}
+
+#posts-city-name {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.post-container-div {
+    margin-left: 50px;
+}
+
+.post-content-div {
+    height: 250px;
+    // border: 1px solid red;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $light-blue;
+        border-radius: 5px;
+    }
+}
+
 // --------------------------------------- Forms
 form {
     width: 450px;
@@ -137,6 +171,8 @@ label {
     color: white !important;
     height: 150px;
 }
+
+
 
 // --------------------------------------- About Cards
 .parent-card {
@@ -321,7 +357,7 @@ div.city-img {
         a {
             display: block;
         }
-    
+
     }
 }
 a {
