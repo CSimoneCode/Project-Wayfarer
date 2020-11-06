@@ -34,7 +34,8 @@ def profile(request):
         'found_user': found_user,
         'posts': posts,
         'comments': comments,
-        'num_comments': len(comments)
+        'num_comments': len(comments),
+        'num_posts': len(posts)
     }
     return render(request, 'profiles/index.html', context)
 
