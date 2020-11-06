@@ -8,15 +8,31 @@
   <h2>{{ profile.name }}'s Page</h2>
 </span>
 
+<div class="posts-div">
+  {% for post in posts %}
+  <a href="{% url 'posts_detail' post.id %}">
+    <div class="card pink">
+      <div class="card-content">
+        <span class="card-title">{{ post.title }}</span>
+        <p>{{ post.author }}</p>
+        <p>{{ post.post_date }}</p>
+        <p class="truncate">{{ post.content }}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
 
-{% for post in posts %}
-<a href="{% url 'posts_detail' post.id %}">
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ post.title }}</span>
-      <p>{{ post.author }}</p>
-      <p>{{ post.post_date }}</p>
-      <p>{{ post.content }}</p>
+<p>Comments: {{ num_comments }}</p>
+<div class="comments-div">
+  {% for comment in comments %}
+    <div class="card teal">
+      <div class="card-content">
+        <span class="card-title">{{ comment.title }}</span>
+        <p>{{ comment.parent_post.city }}</p>
+        <p>{{ comment.post_date }}</p>
+        <p class="truncate">{{ comment.content }}</p>
+      </div>
     </div>
   </div>
 </a>

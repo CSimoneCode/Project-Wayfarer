@@ -3,11 +3,12 @@ from django.contrib.auth import login
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Posts, City
-from .forms import PostsForm, ProfileForm, SignupForm
+from .models import Profile, Posts, City, Comment
+from .forms import PostsForm, ProfileForm, SignupForm, CommentForm
 from django.conf import settings
 from django.core.mail import send_mail
 from pyuploadcare.dj.models import ImageField
+import datetime
 
 
 # --------------------------- STATIC PAGES
@@ -27,10 +28,13 @@ def profile(request):
     posts = Posts.objects.filter(author=request.user.id)
     found_user = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
+    comments = Comment.objects.filter(author=request.user.id)
     context = {
         'profile': profile,
         'found_user': found_user,
-        'posts': posts
+        'posts': posts,
+        'comments': comments,
+        'num_comments': len(comments)
     }
     return render(request, 'profiles/index.html', context)
 
@@ -79,12 +83,15 @@ def update_profile(request):
 # --------------------------- POSTS
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
-    #city = Posts.city.get()
+    comments = Comment.objects.filter(parent_post_id=posts_id)
+    num_comments = len(comments)
     context = {
         'post': posts,
-        # 'city': city 
+        'comments': comments,
+        'num_comments': num_comments
     }
     return render(request,'posts/detail.html', context)
+
 
 
 @login_required
@@ -134,7 +141,6 @@ def edit_post(request, posts_id):
             
 
 # --------------------------- CITIES
-
 def cities_index(request):
     cities = City.objects.all()
     context = {'cities': cities}
@@ -144,31 +150,83 @@ def cities_index(request):
 def cities_detail(request, city_id):
     found_city = City.objects.get(id=city_id)
     posts = Posts.objects.filter(city = found_city.id).order_by('-post_date')
+    # time_diff = datetime.datetime.now()
     context = {
         'city': found_city,
         'posts': posts
     }
     return render(request, 'cities/detail.html', context)
 
+
+# --------------------------- COMMENTS
+@login_required
+def add_comment(request, city_id, posts_id):
+    city = City.objects.get(id=city_id)
+    found_post = Posts.objects.get(id=posts_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.author_id = request.user.id
+            new_comment.parent_post_id = posts_id
+            new_comment.save()
+            return redirect('posts_detail', posts_id)
+    else:
+        comment_form = CommentForm()
+        context = {
+            'comment_form': comment_form,
+            'city': city,
+            'post': found_post
+            }
+        return render(request, 'comments/add.html', context)
+
+
+@login_required
+def update_comment(request, city_id, posts_id, comment_id):
+    comment_to_edit = Comment.objects.get(id=comment_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, instance=comment_to_edit)
+        if comment_form.is_valid():
+            updated_comment = comment_form.save()
+            return redirect('posts_detail', posts_id)
+    else:
+        comment_form = CommentForm(instance=comment_to_edit)
+        context = {
+            'comment_form': comment_form,
+            'comment': comment_to_edit
+        }
+        return render(request, 'comments/edit.html', context)
+
+
+@login_required
+def delete_comment(request, posts_id, comment_id):
+    if request.method == 'POST':
+        Comment.objects.get(id=comment_id).delete()
+        return redirect('posts_detail', posts_id)
+
+
 # --------------------------- AUTH
 def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = SignupForm(request.POST)
-        # form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            subject = 'Welcome, Traveler.'
-            message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email]
-            send_mail(subject, message, email_from, recipient_list)
-            login(request, user)
-            return redirect('add_profile')
+            user = form.save(commit=False)
+            new_email = user.email
+            if User.objects.filter(email=new_email):
+                error_message = 'Email already exists'
+            else:
+                user = form.save()
+                subject = 'Welcome, Traveler.'
+                message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email]
+                send_mail(subject, message, email_from, recipient_list)
+                login(request, user)
+                return redirect('add_profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = SignupForm()
-    # form = UserCreationForm()
     context = {
         'form': form, 
         'error_message': error_message
