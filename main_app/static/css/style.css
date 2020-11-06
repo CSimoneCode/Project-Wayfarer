@@ -10,10 +10,12 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-image: linear-gradient(360deg, #292831, #4a7a96, #ee8695);
+  background-size: cover;
 }
 
 html {
   font-family: 'Courier New', Courier, monospace;
+  min-height: 100%;
 }
 
 main {
@@ -32,12 +34,15 @@ main {
   text-orientation: upright;
 }
 
+span.rotate {
+  height: fit-content;
+}
+
 h1, h2 {
   color: white;
   padding: 0;
   border-left: 3px solid white;
   height: fit-content;
-  margin-top: 285px;
 }
 
 .welcome-outline {
@@ -78,9 +83,9 @@ form {
 }
 
 .form-cont {
-  position: absolute;
-  top: 450px;
-  left: 450px;
+  height: fit-content;
+  margin-top: 100px;
+  margin-right: 500px;
 }
 
 input {
@@ -111,12 +116,22 @@ label {
   display: none;
 }
 
-.about-cont {
+.red-text {
+  color: white !important;
+  height: 150px;
+}
+
+.parent-card {
   display: inline-flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-left: 200px;
-  margin-top: 284px;
+  height: 945px;
+  margin-top: 27px;
+}
+
+.card1 {
+  width: 425px;
+  max-height: 454px;
+  margin: 5px;
 }
 
 .card {
@@ -126,12 +141,19 @@ label {
 }
 
 .row {
-  height: fit-content;
-  align-self: start;
+  height: 444px;
 }
 
 .about-text {
   font-size: 12px;
+}
+
+.card-content {
+  max-height: 200px;
+}
+
+.col {
+  max-height: 444px;
 }
 
 .profile-cont {
@@ -146,6 +168,42 @@ label {
 
 .profile-cont .btn {
   margin-top: 25px;
+}
+
+ul.errorlist.nonfield {
+  color: white !important;
+  display: flex !important;
+  font-size: x-large;
+}
+
+.city-cont {
+  display: block;
+  width: 82%;
+  margin-top: 42px;
+}
+
+.city-cont p {
+  margin-bottom: 75px;
+}
+
+.city-cont a {
+  color: white;
+  font-size: x-large;
+}
+
+.truncate {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  white-space: pre-wrap;
+}
+
+.truncate-comment {
+  display: -webkit-box;
+  white-space: pre-wrap;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
 }
 
 footer {

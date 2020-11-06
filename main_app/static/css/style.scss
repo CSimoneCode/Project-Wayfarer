@@ -20,10 +20,12 @@ body {
 // --------------------------------------- Gradient Vibe
     background-image: 
     linear-gradient(360deg, $wash-black, $light-blue, $orange-pink);
+    background-size: cover;
 }
 
 html {
     font-family: 'Courier New', Courier, monospace;
+    min-height: 100%;
 }
 
 main {
@@ -41,8 +43,11 @@ main {
     writing-mode: vertical-lr;
     transform:scale(1);
     width:60px;
-    // margin-right:50px;
     text-orientation: upright;
+}
+
+span.rotate {
+    height: fit-content;
 }
 
 h1, h2 {
@@ -50,7 +55,7 @@ h1, h2 {
     padding: 0;
     border-left: 3px solid white;
     height: fit-content;
-    margin-top: 285px;
+
 }
 
 .welcome-outline {
@@ -94,9 +99,9 @@ form {
 }
 
 .form-cont {
-    position: absolute;
-    top: 450px;
-    left: 450px;
+    height: fit-content;
+    margin-top: 100px;
+    margin-right: 500px;
 }
 
 input {
@@ -127,14 +132,23 @@ label {
     display: none;
 }
 
-// --------------------------------------- About Card
-.about-cont {
+.red-text {
+    color: white !important;
+    height: 150px;
+}
+
+// --------------------------------------- About Cards
+.parent-card {
     display: inline-flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-left: 200px;
-    margin-top: 284px;
-    
+    height: 945px;
+    margin-top: 27px;
+}
+
+.card1 {
+    width: 425px;
+    max-height: 454px;
+    margin: 5px;
 }
 
 .card {
@@ -144,12 +158,19 @@ label {
 }
 
 .row {
-    height: fit-content;
-    align-self: start;
+    height: 444px;
 }
 
 .about-text {
     font-size: 12px;
+}
+
+.card-content {
+    max-height: 200px;
+}
+
+.col {
+    max-height: 444px;
 }
 
 // --------------------------------------- Profile
@@ -165,6 +186,50 @@ label {
     .btn {
         margin-top: 25px;
     }
+}
+
+// --------------------------------------- Error
+ul.errorlist.nonfield {
+    color: white !important;
+    display: flex !important;
+    font-size: x-large;
+}
+
+// --------------------------------------- Cities
+
+.city-cont {
+    display: block;
+    width: 82%;
+    margin-top: 42px;
+
+    p {
+        margin-bottom: 75px;
+    }
+    
+    a {
+        color: white;
+        font-size: x-large;
+    }
+}
+
+
+
+// --------------------------------------- Truncate
+.truncate {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    white-space: pre-wrap;
+    -webkit-box-orient: vertical;
+}
+
+.truncate-comment {
+    display: -webkit-box;
+    white-space: pre-wrap;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 // --------------------------------------- Footer

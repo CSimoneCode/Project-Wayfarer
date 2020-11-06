@@ -2,9 +2,15 @@
 {% block title %}{{ city.name }}{% endblock %}
 
 {% block content %}
-<h1>{{ city.name }}</h1>
+<span  class="rotate">
+    <h1>{{ city.name }}</h1>
+</span>
+
+<div class="city-cont">
     <p>{{ city.country }}</p>
     <p>{{ city.region }}</p>
+    <p>{{ city.language }}</p>
+    <p>{{ city.blurb }}</p>
     {% for post in posts %}
     <div><!--Do posts as cards?-->
         <a href="{% url 'posts_detail' post.id %}">
@@ -13,5 +19,6 @@
     </div>
     {% endfor %}
     <a href="{% url 'add_post' city.id %}" class="btn">Add Post</a>
+</div>
 {% endblock %}
     
