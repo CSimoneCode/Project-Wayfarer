@@ -9,8 +9,7 @@ class ProfileForm(forms.ModelForm):
         fields = [
             'name',
             'current_city',
-            'past_cities',
-            'pic'
+            'past_cities'
         ]
 
 class PostsForm(forms.ModelForm):
@@ -29,6 +28,9 @@ class CommentForm(forms.ModelForm):
             'title',
             'content'
         ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['content'].widget.attrs.update({'placeholder': '300 characters max'})
 
 
 class SignupForm(UserCreationForm):

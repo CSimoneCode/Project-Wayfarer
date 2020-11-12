@@ -21,15 +21,16 @@ def about(request):
 # --------------------------- PROFILE 
 @login_required
 def profile(request):
-    # found_user = User.objects.filter(id=request.user.id)
-    # profile = Profile.objects.filter(user=request.user)[0]   
     posts = Posts.objects.filter(author=request.user.id)
-    found_user = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=request.user)
+    comments = Comment.objects.filter(author=request.user.id)
+
     context = {
         'profile': profile,
-        'found_user': found_user,
-        'posts': posts
+        'posts': posts,
+        'comments': comments,
+        'num_comments': len(comments),
+        'num_posts': len(posts)
     }
     return render(request, 'profiles/index.html', context)
 
@@ -54,13 +55,12 @@ def add_profile(request):
         }
         return render(request, 'profiles/add.html', context)
 
-##update profile currently incomplete
 
 @login_required
 def update_profile(request):
     error_message = ''
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if profile_form.is_valid():
             updated_profile = profile_form.save()
             return redirect('profile')
@@ -73,17 +73,13 @@ def update_profile(request):
             'error_message': error_message
         }
         return render(request, 'profiles/edit.html', context)
-
-def add_photo(request):
-    if request.method == 'POST':
-        photo_form = PhotoForm(request.POST)
         
 
 # --------------------------- POSTS
 def posts_detail(request, posts_id):
     posts = Posts.objects.get(id=posts_id)
     comments = Comment.objects.filter(parent_post_id=posts_id)
-    num_comments=len(comments)
+    num_comments = len(comments)
     context = {
         'post': posts,
         'comments': comments,
@@ -163,35 +159,43 @@ def add_comment(request, city_id, posts_id):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
-            new_comment.author_id = request.user.id 
+            new_comment.author_id = request.user.id
             new_comment.parent_post_id = posts_id
             new_comment.save()
             return redirect('posts_detail', posts_id)
-    else: 
+    else:
         comment_form = CommentForm()
         context = {
             'comment_form': comment_form,
             'city': city,
             'post': found_post
-        }
+            }
         return render(request, 'comments/add.html', context)
 
 
 @login_required
-def edit_comment(request, city_id, posts_id, comment_id):
-    found_comment = Comment.objects.get(id=comment_id)
+def update_comment(request, city_id, posts_id, comment_id):
+    comment_to_edit = Comment.objects.get(id=comment_id)
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST, instance=found_comment)
+        comment_form = CommentForm(request.POST, instance=comment_to_edit)
         if comment_form.is_valid():
             updated_comment = comment_form.save()
             return redirect('posts_detail', posts_id)
-    else: 
-        comment_form = CommentForm(instance=found_comment)
+    else:
+        comment_form = CommentForm(instance=comment_to_edit)
         context = {
             'comment_form': comment_form,
-            'comment': found_comment
+            'comment': comment_to_edit
         }
         return render(request, 'comments/edit.html', context)
+
+
+@login_required
+def delete_comment(request, posts_id, comment_id):
+    if request.method == 'POST':
+        Comment.objects.get(id=comment_id).delete()
+        return redirect('posts_detail', posts_id)
+
 
 # --------------------------- AUTH
 def signup(request):
@@ -199,14 +203,19 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            subject = 'Welcome, Traveler.'
-            message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email]
-            send_mail(subject, message, email_from, recipient_list)
-            login(request, user)
-            return redirect('add_profile')
+            user = form.save(commit=False)
+            new_email = user.email
+            if User.objects.filter(email=new_email):
+                error_message = 'Email already exists'
+            else:
+                user = form.save()
+                subject = 'Welcome, Traveler.'
+                message = f"Hello {user}, and welcome to Wayfarer.\nRemember to leave people and places better than you found them <3"
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user.email]
+                send_mail(subject, message, email_from, recipient_list)
+                login(request, user)
+                return redirect('add_profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = SignupForm()

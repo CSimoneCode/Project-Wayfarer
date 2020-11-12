@@ -127,7 +127,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/profile/'
 
@@ -142,5 +141,5 @@ EMAIL_HOST_PASSWORD = 'partyJESUS4lif3'
 
 # Pillow Image Uploader
 
-MEDIA_ROOT = BASE_DIR / 'images'
-MEDIA_URL = '/images/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
