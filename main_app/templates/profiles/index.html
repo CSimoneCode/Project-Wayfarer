@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+
+{% block title %} | Profile{% endblock %}
+{% load static %}
+{% block content %}
+
+
+<span class="rotate"><h2>{{ profile.name }}</h2></span>
+<a class="btn update-btn" href="{% url 'update_profile' %}">Update Profile</a>
+<div class="profile-cont">
+  <p>Username | {{ profile.user }} <small> | Joined | {{ profile.join_date }}</small></p>
+  <p>Current City | {{ profile.current_city }}</p>
+  <p>Past Cities | {{ profile.past_cities }}</p>
+</div>
+
+<div class="profile-content">
+
+  <div class="row" id="tabs-row">
+    <div class="col s12">
+      <ul class="tabs transparent">
+        <li class="tab col s3"><a href="#posts-tab">My Posts | {{ num_posts }}</a></li>
+        <li class="tab col s3"><a href="#comments-tab">My Comments | {{ num_comments }}</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="col s12" id="posts-tab">
+    <div class="posts-div posts-tabs-div">
+      {% for post in posts %}
+        <div class="card post-card transparent">
+          <a href="{% url 'posts_detail' post.id %}">
+            <div class="card-content">
+            <div>
+              <span class="card-title">{{ post.title }}</span>
+              <p>{{ post.author }}</p>
+              <p>{{ post.post_date }}</p>
+            </div>
+            <div>
+              <p class="truncate">{{ post.content }}</p>
+            </div>
+            </div>
+          </a>
+        </div>
+
+      {% endfor %}
+    </div>
+  </div>
+<div class="col s12" id="comments-tab">
+  <div class="comments-div" id="comments-tab-div">
+    {% for comment in comments %}
+      <div class="card transparent">
+        <div class="card-content">
+          <div>
+            {% comment %} <a class="profile-comment-title" href="{% url 'posts_detail' comment.parent_post.id %}"><small>{{ comment.parent_post.title }}</small></a> {% endcomment %}
+            <span class="card-title white-text">{{ comment.title }}</span>
+            <p>{{ comment.parent_post.city }}</p>
+            <p>{{ comment.post_date }}</p>
+          </div>
+          <div id="profile-comments">
+            <p>{{ comment.content }}</p>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+  </div>
+</div>
+{% comment %} <p ><img class="z-depth-3 col s12 m5 l1 circle responsive-img" src="/{{ profile.pic }}"/> </p> {% endcomment %}
+
+
+
+{% endblock %}

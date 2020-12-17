@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} | Add Comment{% endblock %}
+
+{% block content %}
+<span><a class="white-text"><span class="rotate" id="add-post">Add Comment</span></a></span>
+
+<span class="rotate">
+    <h1>{{ city.name }}</h1>
+</span>
+
+
+{% comment %} 
+<h1>Add Comment</h1>
+<h2>{{ city.name }}</h2> {% endcomment %}
+
+<form class="add-comment-form" method="post" action="{% url 'add_comment' city.id post.id %}">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" class="btn" value="Add Comment">
+</form>
+
+{% endblock %}
+    

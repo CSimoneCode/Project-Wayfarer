@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} | Edit{% endblock %}
+
+{% block content %}
+<span class="rotate">
+    <h1>Update</h1>
+</span>
+
+{% if error_message %}
+<p class="red-text">{{ error_message }}</p>
+{% endif %}
+
+<div class="form-cont">
+  <form method="post" action="{% url 'update_profile' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <input type="submit" class="btn" value="Update Profile">
+  </form>
+</div>
+{% endblock %}
