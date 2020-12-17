@@ -6,14 +6,6 @@
 <h1>Edit Post</h1>
 </span>
 
-<<<<<<< HEAD
-<form method="post" action="{% url 'edit_post' post.id %}">
-  {% csrf_token %}
-  {{ post_form.as_p }}
-  <input type="submit" class="btn" value="Edit Post">
-</form>
-
-=======
 
 <div class="form-cont">
   <form method="post" action="{% url 'edit_post' post.id %}">
@@ -22,5 +14,4 @@
     <input type="submit" class="btn" value="Edit Post">
   </form>
 </div>
->>>>>>> 16e7931ee1b46780a3faf7c211add84f382794f9
 {% endblock %}
